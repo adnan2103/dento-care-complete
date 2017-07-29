@@ -1,0 +1,29 @@
+{
+    "dentoCareApp": {
+        "patient" : {
+            "home": {
+                "title": "Patients",
+                "createLabel": "नया Patient बनाएँ",
+                "createOrEditLabel": "Patient बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Patient [identifier: {{ param }}] तैयार है",
+            "updated": "एक Patient [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Patient [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Patient [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Patient"
+            },
+            "name": "Name",
+            "gender": "Gender",
+            "age": "Age",
+            "photo": "Photo",
+            "treatment": "Treatment",
+            "appointment": "Appointment",
+            "contactNumber": "Contact Number",
+            "email": "Email",
+            "address": "Address"
+        }
+    }
+}

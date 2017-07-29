@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "postTreatmentImage" : {
+            "home": {
+                "title": "PostTreatmentImages",
+                "createLabel": "नया Post Treatment Image बनाएँ",
+                "createOrEditLabel": "Post Treatment Image बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Post Treatment Image [identifier: {{ param }}] तैयार है",
+            "updated": "एक Post Treatment Image [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Post Treatment Image [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Post Treatment Image [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Post Treatment Image"
+            },
+            "image": "Image",
+            "treatment": "Treatment"
+        }
+    }
+}

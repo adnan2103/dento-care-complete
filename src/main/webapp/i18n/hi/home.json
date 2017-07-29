@@ -1,0 +1,9 @@
+{
+    "home": {
+        "title": "आपका स्वागत है, Dento Care!",
+        "subtitle": "Dento Care",
+        "logged": {
+            "message": "आप उपयोगकर्ता \"{{username}}\" के रूप में लॉग ऑन हैं "
+        }
+    }
+}

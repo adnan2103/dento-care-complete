@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "contactNumber" : {
+            "home": {
+                "title": "ContactNumbers",
+                "createLabel": "नया Contact Number बनाएँ",
+                "createOrEditLabel": "Contact Number बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Contact Number [identifier: {{ param }}] तैयार है",
+            "updated": "एक Contact Number [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Contact Number [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Contact Number [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Contact Number"
+            },
+            "contactNumebr": "Contact Numebr",
+            "patient": "Patient"
+        }
+    }
+}

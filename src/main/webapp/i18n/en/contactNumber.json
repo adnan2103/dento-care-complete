@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "contactNumber" : {
+            "home": {
+                "title": "Contact Numbers",
+                "createLabel": "Create a new Contact Number",
+                "createOrEditLabel": "Create or edit a Contact Number"
+            },
+            "created": "A new Contact Number is created with identifier {{ param }}",
+            "updated": "A Contact Number is updated with identifier {{ param }}",
+            "deleted": "A Contact Number is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contact Number {{ id }}?"
+            },
+            "detail": {
+                "title": "Contact Number"
+            },
+            "contactNumebr": "Contact Numebr",
+            "patient": "Patient"
+        }
+    }
+}

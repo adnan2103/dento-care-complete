@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170728204007",
+    "entityTableName": "email",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

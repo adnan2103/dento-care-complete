@@ -1,0 +1,86 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAddressLabel" data-translate="dentoCareApp.address.home.createOrEditLabel">Create or edit a Address</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.address.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.address.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.addressType" for="field_addressType">Address Type</label>
+            <select class="form-control" name="addressType" ng-model="vm.address.addressType" id="field_addressType">
+                <option value="HOME" data-translate="dentoCareApp.AddressType.HOME">HOME</option>
+                <option value="OFFICE" data-translate="dentoCareApp.AddressType.OFFICE">OFFICE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.line1" for="field_line1">Line 1</label>
+            <input type="text" class="form-control" name="line1" id="field_line1"
+                    ng-model="vm.address.line1"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.line2" for="field_line2">Line 2</label>
+            <input type="text" class="form-control" name="line2" id="field_line2"
+                    ng-model="vm.address.line2"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.city" for="field_city">City</label>
+            <input type="text" class="form-control" name="city" id="field_city"
+                    ng-model="vm.address.city"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.state" for="field_state">State</label>
+            <select class="form-control" name="state" ng-model="vm.address.state" id="field_state">
+                <option value="MP" data-translate="dentoCareApp.State.MP">MP</option>
+                <option value="UP" data-translate="dentoCareApp.State.UP">UP</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.country" for="field_country">Country</label>
+            <select class="form-control" name="country" ng-model="vm.address.country" id="field_country">
+                <option value="INDIA" data-translate="dentoCareApp.Country.INDIA">INDIA</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.address.pincode" for="field_pincode">Pincode</label>
+            <input type="number" class="form-control" name="pincode" id="field_pincode"
+                    ng-model="vm.address.pincode"
+                    max="6"/>
+            <div ng-show="editForm.pincode.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pincode.$error.max" data-translate="entity.validation.max" translate-value-max="6">
+                    This field cannot be more than 6.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.pincode.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="dentoCareApp.address.patient" for="field_patient">Patient</label>
+            <select class="form-control" id="field_patient" name="patient" ng-model="vm.address.patient" ng-options="patient as patient.id for patient in vm.patients track by patient.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

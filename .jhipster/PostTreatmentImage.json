@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "treatment",
+            "otherEntityName": "treatment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170728204016",
+    "entityTableName": "post_treatment_image",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,30 @@
+{
+    "dentoCareApp": {
+        "treatment" : {
+            "home": {
+                "title": "Treatments",
+                "createLabel": "नया Treatment बनाएँ",
+                "createOrEditLabel": "Treatment बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Treatment [identifier: {{ param }}] तैयार है",
+            "updated": "एक Treatment [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Treatment [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Treatment [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Treatment"
+            },
+            "chiefComplainDescription": "Chief Complain Description",
+            "status": "Status",
+            "startDate": "Start Date",
+            "lastModifiedDate": "Last Modified Date",
+            "patient": "Patient",
+            "notes": "Notes",
+            "oralExamination": "Oral Examination",
+            "payment": "Payment",
+            "preTreatmentImage": "Pre Treatment Image",
+            "postTreatmentImage": "Post Treatment Image"
+        }
+    }
+}

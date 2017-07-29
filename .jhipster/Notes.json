@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "treatment",
+            "otherEntityName": "treatment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "note",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170728204011",
+    "entityTableName": "notes",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

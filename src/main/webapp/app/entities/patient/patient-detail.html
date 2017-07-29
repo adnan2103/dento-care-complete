@@ -1,0 +1,40 @@
+
+<div>
+    <h2><span data-translate="dentoCareApp.patient.detail.title">Patient</span> {{vm.patient.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dentoCareApp.patient.name">Name</span></dt>
+        <dd>
+            <span>{{vm.patient.name}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.patient.gender">Gender</span></dt>
+        <dd>
+            <span data-translate="{{'dentoCareApp.Gender.' + vm.patient.gender}}">{{vm.patient.gender}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.patient.age">Age</span></dt>
+        <dd>
+            <span>{{vm.patient.age}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.patient.photo">Photo</span></dt>
+        <dd>
+            <div ng-if="vm.patient.photo">
+                <a ng-click="vm.openFile(vm.patient.photoContentType, vm.patient.photo)">
+                    <img data-ng-src="{{'data:' + vm.patient.photoContentType + ';base64,' + vm.patient.photo}}" style="max-width: 100%;" alt="patient image"/>
+                </a>
+                {{vm.patient.photoContentType}}, {{vm.byteSize(vm.patient.photo)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="patient-detail.edit({id:vm.patient.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

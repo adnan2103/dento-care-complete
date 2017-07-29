@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "treatment",
+            "otherEntityName": "treatment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cost",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170728204013",
+    "entityTableName": "oral_examination",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

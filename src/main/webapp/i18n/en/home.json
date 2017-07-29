@@ -1,0 +1,9 @@
+{
+    "home": {
+        "title": "Welcome, Dento Care!",
+        "subtitle": "Manage Your Pateint with no hustle.",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        }
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "treatment",
+            "otherEntityName": "treatment",
+            "otherEntityRelationshipName": "patient"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "appointment",
+            "otherEntityName": "appointment",
+            "otherEntityRelationshipName": "patient"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactNumber",
+            "otherEntityName": "contactNumber",
+            "otherEntityRelationshipName": "patient"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "email",
+            "otherEntityName": "email",
+            "otherEntityRelationshipName": "patient"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityRelationshipName": "patient"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "Gender",
+            "fieldValues": "MALE,FEMALE"
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 99
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170728204009",
+    "entityTableName": "patient",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

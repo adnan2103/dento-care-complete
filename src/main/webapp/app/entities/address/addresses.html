@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="dentoCareApp.address.home.title">Addresses</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="address.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dentoCareApp.address.home.createLabel">
+                        Create new Address
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dentoCareApp.address.addressType">Address Type</span></th>
+                    <th><span data-translate="dentoCareApp.address.line1">Line 1</span></th>
+                    <th><span data-translate="dentoCareApp.address.line2">Line 2</span></th>
+                    <th><span data-translate="dentoCareApp.address.city">City</span></th>
+                    <th><span data-translate="dentoCareApp.address.state">State</span></th>
+                    <th><span data-translate="dentoCareApp.address.country">Country</span></th>
+                    <th><span data-translate="dentoCareApp.address.pincode">Pincode</span></th>
+                    <th><span data-translate="dentoCareApp.address.patient">Patient</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="address in vm.addresses track by address.id">
+                    <td><a ui-sref="address-detail({id:address.id})">{{address.id}}</a></td>
+                    <td data-translate="{{'dentoCareApp.AddressType.' + address.addressType}}">{{address.addressType}}</td>
+                    <td>{{address.line1}}</td>
+                    <td>{{address.line2}}</td>
+                    <td>{{address.city}}</td>
+                    <td data-translate="{{'dentoCareApp.State.' + address.state}}">{{address.state}}</td>
+                    <td data-translate="{{'dentoCareApp.Country.' + address.country}}">{{address.country}}</td>
+                    <td>{{address.pincode}}</td>
+                    <td>
+                        <a ui-sref="patient-detail({id:address.patient.id})">{{address.patient.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="address-detail({id:address.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="address.edit({id:address.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="address.delete({id:address.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

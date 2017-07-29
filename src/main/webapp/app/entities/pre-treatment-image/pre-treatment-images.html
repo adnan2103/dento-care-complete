@@ -1,0 +1,65 @@
+<div>
+    <h2 data-translate="dentoCareApp.preTreatmentImage.home.title">Pre Treatment Images</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="pre-treatment-image.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dentoCareApp.preTreatmentImage.home.createLabel">
+                        Create new Pre Treatment Image
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dentoCareApp.preTreatmentImage.image">Image</span></th>
+                    <th><span data-translate="dentoCareApp.preTreatmentImage.treatment">Treatment</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="preTreatmentImage in vm.preTreatmentImages track by preTreatmentImage.id">
+                    <td><a ui-sref="pre-treatment-image-detail({id:preTreatmentImage.id})">{{preTreatmentImage.id}}</a></td>
+                    <td>
+                        <a ng-if="preTreatmentImage.image" ng-click="vm.openFile(preTreatmentImage.imageContentType, preTreatmentImage.image)">
+                            <img data-ng-src="{{'data:' + preTreatmentImage.imageContentType + ';base64,' + preTreatmentImage.image}}" style="max-height: 30px;" alt="preTreatmentImage image"/>
+                        </a>
+                        <span ng-if="preTreatmentImage.image">{{preTreatmentImage.imageContentType}}, {{vm.byteSize(preTreatmentImage.image)}}</span>
+                    </td>
+                    <td>
+                        <a ui-sref="treatment-detail({id:preTreatmentImage.treatment.id})">{{preTreatmentImage.treatment.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="pre-treatment-image-detail({id:preTreatmentImage.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pre-treatment-image.edit({id:preTreatmentImage.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pre-treatment-image.delete({id:preTreatmentImage.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

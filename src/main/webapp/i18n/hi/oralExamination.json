@@ -1,0 +1,23 @@
+{
+    "dentoCareApp": {
+        "oralExamination" : {
+            "home": {
+                "title": "OralExaminations",
+                "createLabel": "नया Oral Examination बनाएँ",
+                "createOrEditLabel": "Oral Examination बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Oral Examination [identifier: {{ param }}] तैयार है",
+            "updated": "एक Oral Examination [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Oral Examination [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Oral Examination [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Oral Examination"
+            },
+            "description": "Description",
+            "cost": "Cost",
+            "treatment": "Treatment"
+        }
+    }
+}

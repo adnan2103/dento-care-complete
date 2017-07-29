@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "addressType",
+            "fieldType": "AddressType",
+            "fieldValues": "HOME,OFFICE"
+        },
+        {
+            "fieldName": "line1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "line2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "State",
+            "fieldValues": "MP,UP"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "Country",
+            "fieldValues": "INDIA"
+        },
+        {
+            "fieldName": "pincode",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 6
+        }
+    ],
+    "changelogDate": "20170728204008",
+    "entityTableName": "address",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,9 @@
+{
+    "dentoCareApp": {
+        "AddressType" : {
+            "null": "",
+            "HOME": "HOME",
+            "OFFICE": "OFFICE"
+        }
+    }
+}

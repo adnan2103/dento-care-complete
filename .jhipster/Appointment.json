@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "appointmentStart",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "appointmentEnd",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "plannedTreatment",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170728204012",
+    "entityTableName": "appointment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

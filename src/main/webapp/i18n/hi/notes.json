@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "notes" : {
+            "home": {
+                "title": "Notes",
+                "createLabel": "नया Notes बनाएँ",
+                "createOrEditLabel": "Notes बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Notes [identifier: {{ param }}] तैयार है",
+            "updated": "एक Notes [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Notes [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Notes [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Notes"
+            },
+            "note": "Note",
+            "treatment": "Treatment"
+        }
+    }
+}

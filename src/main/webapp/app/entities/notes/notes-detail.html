@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="dentoCareApp.notes.detail.title">Notes</span> {{vm.notes.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dentoCareApp.notes.note">Note</span></dt>
+        <dd>
+            <span>{{vm.notes.note}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.notes.treatment">Treatment</span></dt>
+        <dd>
+            <a ui-sref="treatment-detail({id:vm.notes.treatment.id})">{{vm.notes.treatment.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="notes-detail.edit({id:vm.notes.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

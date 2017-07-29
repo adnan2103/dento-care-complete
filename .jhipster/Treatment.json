@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "notes",
+            "otherEntityName": "notes",
+            "otherEntityRelationshipName": "treatment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "oralExamination",
+            "otherEntityName": "oralExamination",
+            "otherEntityRelationshipName": "treatment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "payment",
+            "otherEntityName": "payment",
+            "otherEntityRelationshipName": "treatment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "preTreatmentImage",
+            "otherEntityName": "preTreatmentImage",
+            "otherEntityRelationshipName": "treatment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "postTreatmentImage",
+            "otherEntityName": "postTreatmentImage",
+            "otherEntityRelationshipName": "treatment"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "chiefComplainDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "NEW,INPROGRESS,COMPLETED"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastModifiedDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170728204010",
+    "entityTableName": "treatment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

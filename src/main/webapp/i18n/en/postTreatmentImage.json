@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "postTreatmentImage" : {
+            "home": {
+                "title": "Post Treatment Images",
+                "createLabel": "Create a new Post Treatment Image",
+                "createOrEditLabel": "Create or edit a Post Treatment Image"
+            },
+            "created": "A new Post Treatment Image is created with identifier {{ param }}",
+            "updated": "A Post Treatment Image is updated with identifier {{ param }}",
+            "deleted": "A Post Treatment Image is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Post Treatment Image {{ id }}?"
+            },
+            "detail": {
+                "title": "Post Treatment Image"
+            },
+            "image": "Image",
+            "treatment": "Treatment"
+        }
+    }
+}

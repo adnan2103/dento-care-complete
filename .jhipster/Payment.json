@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "treatment",
+            "otherEntityName": "treatment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "paymentDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "treatmentDone",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170728204014",
+    "entityTableName": "payment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

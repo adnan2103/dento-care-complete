@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "contactNumebr",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "max"
+            ],
+            "fieldValidateRulesMax": 9999
+        }
+    ],
+    "changelogDate": "20170728204006",
+    "entityTableName": "contact_number",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

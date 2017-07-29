@@ -1,0 +1,9 @@
+{
+    "dentoCareApp": {
+        "Gender" : {
+            "null": "",
+            "MALE": "MALE",
+            "FEMALE": "FEMALE"
+        }
+    }
+}

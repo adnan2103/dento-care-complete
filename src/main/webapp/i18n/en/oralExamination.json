@@ -1,0 +1,23 @@
+{
+    "dentoCareApp": {
+        "oralExamination" : {
+            "home": {
+                "title": "Oral Examinations",
+                "createLabel": "Create a new Oral Examination",
+                "createOrEditLabel": "Create or edit a Oral Examination"
+            },
+            "created": "A new Oral Examination is created with identifier {{ param }}",
+            "updated": "A Oral Examination is updated with identifier {{ param }}",
+            "deleted": "A Oral Examination is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Oral Examination {{ id }}?"
+            },
+            "detail": {
+                "title": "Oral Examination"
+            },
+            "description": "Description",
+            "cost": "Cost",
+            "treatment": "Treatment"
+        }
+    }
+}

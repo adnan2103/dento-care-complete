@@ -1,0 +1,24 @@
+{
+    "dentoCareApp": {
+        "appointment" : {
+            "home": {
+                "title": "Appointments",
+                "createLabel": "नया Appointment बनाएँ",
+                "createOrEditLabel": "Appointment बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Appointment [identifier: {{ param }}] तैयार है",
+            "updated": "एक Appointment [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Appointment [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Appointment [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Appointment"
+            },
+            "appointmentStart": "Appointment Start",
+            "appointmentEnd": "Appointment End",
+            "plannedTreatment": "Planned Treatment",
+            "patient": "Patient"
+        }
+    }
+}

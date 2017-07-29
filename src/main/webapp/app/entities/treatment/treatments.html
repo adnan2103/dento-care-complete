@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="dentoCareApp.treatment.home.title">Treatments</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="treatment.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dentoCareApp.treatment.home.createLabel">
+                        Create new Treatment
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dentoCareApp.treatment.chiefComplainDescription">Chief Complain Description</span></th>
+                    <th><span data-translate="dentoCareApp.treatment.status">Status</span></th>
+                    <th><span data-translate="dentoCareApp.treatment.startDate">Start Date</span></th>
+                    <th><span data-translate="dentoCareApp.treatment.lastModifiedDate">Last Modified Date</span></th>
+                    <th><span data-translate="dentoCareApp.treatment.patient">Patient</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="treatment in vm.treatments track by treatment.id">
+                    <td><a ui-sref="treatment-detail({id:treatment.id})">{{treatment.id}}</a></td>
+                    <td>{{treatment.chiefComplainDescription}}</td>
+                    <td data-translate="{{'dentoCareApp.Status.' + treatment.status}}">{{treatment.status}}</td>
+                    <td>{{treatment.startDate | date:'medium'}}</td>
+                    <td>{{treatment.lastModifiedDate | date:'medium'}}</td>
+                    <td>
+                        <a ui-sref="patient-detail({id:treatment.patient.id})">{{treatment.patient.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="treatment-detail({id:treatment.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="treatment.edit({id:treatment.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="treatment.delete({id:treatment.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

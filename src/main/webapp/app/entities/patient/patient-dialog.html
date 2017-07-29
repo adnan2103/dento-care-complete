@@ -1,0 +1,77 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPatientLabel" data-translate="dentoCareApp.patient.home.createOrEditLabel">Create or edit a Patient</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.patient.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.patient.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.patient.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.patient.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.patient.gender" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" ng-model="vm.patient.gender" id="field_gender">
+                <option value="MALE" data-translate="dentoCareApp.Gender.MALE">MALE</option>
+                <option value="FEMALE" data-translate="dentoCareApp.Gender.FEMALE">FEMALE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dentoCareApp.patient.age" for="field_age">Age</label>
+            <input type="number" class="form-control" name="age" id="field_age"
+                    ng-model="vm.patient.age"
+                    max="99"/>
+            <div ng-show="editForm.age.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.age.$error.max" data-translate="entity.validation.max" translate-value-max="99">
+                    This field cannot be more than 99.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.age.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.patient)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dentoCareApp.patient.photo" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.patient.photoContentType + ';base64,' + vm.patient.photo}}" style="max-height: 100px;" ng-if="vm.patient.photo" alt="patient image"/>
+                <div ng-if="vm.patient.photo" class="help-block clearfix">
+                    <span class="pull-left">{{vm.patient.photoContentType}}, {{vm.byteSize(vm.patient.photo)}}</span>
+                    <button type="button" ng-click="vm.patient.photo=null;vm.patient.photoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.patient)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.patient.photo"
+                    />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.patient.photoContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

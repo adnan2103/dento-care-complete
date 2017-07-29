@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="dentoCareApp.contactNumber.detail.title">Contact Number</span> {{vm.contactNumber.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dentoCareApp.contactNumber.contactNumebr">Contact Numebr</span></dt>
+        <dd>
+            <span>{{vm.contactNumber.contactNumebr}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.contactNumber.patient">Patient</span></dt>
+        <dd>
+            <a ui-sref="patient-detail({id:vm.contactNumber.patient.id})">{{vm.contactNumber.patient.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="contact-number-detail.edit({id:vm.contactNumber.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

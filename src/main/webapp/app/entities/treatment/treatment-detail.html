@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="dentoCareApp.treatment.detail.title">Treatment</span> {{vm.treatment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dentoCareApp.treatment.chiefComplainDescription">Chief Complain Description</span></dt>
+        <dd>
+            <span>{{vm.treatment.chiefComplainDescription}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.treatment.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'dentoCareApp.Status.' + vm.treatment.status}}">{{vm.treatment.status}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.treatment.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{vm.treatment.startDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.treatment.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+            <span>{{vm.treatment.lastModifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="dentoCareApp.treatment.patient">Patient</span></dt>
+        <dd>
+            <a ui-sref="patient-detail({id:vm.treatment.patient.id})">{{vm.treatment.patient.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="treatment-detail.edit({id:vm.treatment.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

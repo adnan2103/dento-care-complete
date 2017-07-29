@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204006_added_entity_ContactNumber.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204007_added_entity_Email.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204008_added_entity_Address.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204009_added_entity_Patient.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204010_added_entity_Treatment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204011_added_entity_Notes.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204012_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204013_added_entity_OralExamination.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204014_added_entity_Payment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204015_added_entity_PreTreatmentImage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204016_added_entity_PostTreatmentImage.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170728204006_added_entity_constraints_ContactNumber.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204007_added_entity_constraints_Email.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204008_added_entity_constraints_Address.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204010_added_entity_constraints_Treatment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204011_added_entity_constraints_Notes.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204012_added_entity_constraints_Appointment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204013_added_entity_constraints_OralExamination.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204014_added_entity_constraints_Payment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204015_added_entity_constraints_PreTreatmentImage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170728204016_added_entity_constraints_PostTreatmentImage.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

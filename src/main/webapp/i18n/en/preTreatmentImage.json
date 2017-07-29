@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "preTreatmentImage" : {
+            "home": {
+                "title": "Pre Treatment Images",
+                "createLabel": "Create a new Pre Treatment Image",
+                "createOrEditLabel": "Create or edit a Pre Treatment Image"
+            },
+            "created": "A new Pre Treatment Image is created with identifier {{ param }}",
+            "updated": "A Pre Treatment Image is updated with identifier {{ param }}",
+            "deleted": "A Pre Treatment Image is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pre Treatment Image {{ id }}?"
+            },
+            "detail": {
+                "title": "Pre Treatment Image"
+            },
+            "image": "Image",
+            "treatment": "Treatment"
+        }
+    }
+}

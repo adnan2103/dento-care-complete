@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span data-translate="dentoCareApp.preTreatmentImage.detail.title">Pre Treatment Image</span> {{vm.preTreatmentImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dentoCareApp.preTreatmentImage.image">Image</span></dt>
+        <dd>
+            <div ng-if="vm.preTreatmentImage.image">
+                <a ng-click="vm.openFile(vm.preTreatmentImage.imageContentType, vm.preTreatmentImage.image)">
+                    <img data-ng-src="{{'data:' + vm.preTreatmentImage.imageContentType + ';base64,' + vm.preTreatmentImage.image}}" style="max-width: 100%;" alt="preTreatmentImage image"/>
+                </a>
+                {{vm.preTreatmentImage.imageContentType}}, {{vm.byteSize(vm.preTreatmentImage.image)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dentoCareApp.preTreatmentImage.treatment">Treatment</span></dt>
+        <dd>
+            <a ui-sref="treatment-detail({id:vm.preTreatmentImage.treatment.id})">{{vm.preTreatmentImage.treatment.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="pre-treatment-image-detail.edit({id:vm.preTreatmentImage.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

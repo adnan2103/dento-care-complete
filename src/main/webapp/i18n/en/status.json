@@ -1,0 +1,10 @@
+{
+    "dentoCareApp": {
+        "Status" : {
+            "null": "",
+            "NEW": "NEW",
+            "INPROGRESS": "INPROGRESS",
+            "COMPLETED": "COMPLETED"
+        }
+    }
+}

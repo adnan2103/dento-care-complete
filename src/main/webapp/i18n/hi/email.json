@@ -1,0 +1,22 @@
+{
+    "dentoCareApp": {
+        "email" : {
+            "home": {
+                "title": "Emails",
+                "createLabel": "नया Email बनाएँ",
+                "createOrEditLabel": "Email बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Email [identifier: {{ param }}] तैयार है",
+            "updated": "एक Email [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Email [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Email [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Email"
+            },
+            "email": "Email",
+            "patient": "Patient"
+        }
+    }
+}
