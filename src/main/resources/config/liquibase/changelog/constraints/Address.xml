@@ -4,13 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity Appointment.
+        Added the constraints for entity Address.
     -->
-    <changeSet id="20170728204012-2" author="jhipster">
-        
+    <changeSet id="Address-2" author="AdnanKhan">
+
         <addForeignKeyConstraint baseColumnNames="patient_id"
-                                 baseTableName="appointment"
-                                 constraintName="fk_appointment_patient_id"
+                                 baseTableName="address"
+                                 constraintName="fk_address_patient_id"
                                  referencedColumnNames="id"
                                  referencedTableName="patient"/>
 

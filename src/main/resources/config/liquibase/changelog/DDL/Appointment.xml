@@ -15,15 +15,23 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity ContactNumber.
+        Added the entity Appointment.
     -->
-    <changeSet id="20170728204006-1" author="jhipster">
-        <createTable tableName="contact_number">
+    <changeSet id="Appointment-1" author="AdnanKhan">
+        <createTable tableName="appointment">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="contact_numebr" type="integer">
-                <constraints nullable="false" />
+            <column name="appointment_start" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="appointment_end" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="planned_treatment" type="varchar(255)">
+                <constraints nullable="true" />
             </column>
 
             <column name="patient_id" type="bigint">
@@ -32,6 +40,8 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+        <dropDefaultValue tableName="appointment" columnName="appointment_start" columnDataType="datetime"/>
+        <dropDefaultValue tableName="appointment" columnName="appointment_end" columnDataType="datetime"/>
+
     </changeSet>
 </databaseChangeLog>

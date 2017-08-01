@@ -4,13 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity PostTreatmentImage.
+        Added the constraints for entity Payment.
     -->
-    <changeSet id="20170728204016-2" author="jhipster">
-        
+    <changeSet id="Payment-2" author="AdnanKhan">
+
         <addForeignKeyConstraint baseColumnNames="treatment_id"
-                                 baseTableName="post_treatment_image"
-                                 constraintName="fk_post_treatment_image_treatment_id"
+                                 baseTableName="payment"
+                                 constraintName="fk_payment_treatment_id"
                                  referencedColumnNames="id"
                                  referencedTableName="treatment"/>
 
