@@ -24,7 +24,7 @@ public class OralExamination implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "jhi_cost")
+    @Column(name = "cost")
     private Long cost;
 
     @ManyToOne
