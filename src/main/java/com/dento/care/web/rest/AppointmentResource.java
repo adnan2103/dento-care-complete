@@ -3,11 +3,15 @@ package com.dento.care.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dento.care.domain.Appointment;
 
+import com.dento.care.domain.User;
 import com.dento.care.repository.AppointmentRepository;
+import com.dento.care.repository.UserRepository;
+import com.dento.care.security.SecurityUtils;
 import com.dento.care.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +34,10 @@ public class AppointmentResource {
 
     private final AppointmentRepository appointmentRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+
     public AppointmentResource(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
     }
@@ -45,6 +53,10 @@ public class AppointmentResource {
     @Timed
     public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) throws URISyntaxException {
         log.debug("REST request to save Appointment : {}", appointment);
+
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        appointment.setDoctor(user.get());
+
         if (appointment.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new appointment cannot already have an ID")).body(null);
         }
@@ -85,7 +97,7 @@ public class AppointmentResource {
     @Timed
     public List<Appointment> getAllAppointments() {
         log.debug("REST request to get all Appointments");
-        return appointmentRepository.findAll();
+        return appointmentRepository.findByUserIsCurrentUser();
     }
 
     /**

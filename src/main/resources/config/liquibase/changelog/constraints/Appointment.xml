@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="patient"/>
 
+        <addForeignKeyConstraint baseColumnNames="doctor_id"
+                                 baseTableName="appointment"
+                                 constraintName="fk_appointment_doctor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
     </changeSet>
 </databaseChangeLog>

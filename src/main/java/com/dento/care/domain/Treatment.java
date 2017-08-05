@@ -43,6 +43,9 @@ public class Treatment implements Serializable {
     @ManyToOne
     private Patient patient;
 
+    @ManyToOne
+    private User doctor;
+
     @OneToMany(mappedBy = "treatment")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -139,6 +142,14 @@ public class Treatment implements Serializable {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 
     public Set<Notes> getNotes() {

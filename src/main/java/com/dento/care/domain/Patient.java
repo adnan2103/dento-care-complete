@@ -45,6 +45,9 @@ public class Patient implements Serializable {
     @Column(name = "photo_content_type")
     private String photoContentType;
 
+    @ManyToOne
+    private User doctor;
+
     @OneToMany(mappedBy = "patient")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -266,6 +269,14 @@ public class Patient implements Serializable {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 
     @Override

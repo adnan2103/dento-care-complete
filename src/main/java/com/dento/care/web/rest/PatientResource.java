@@ -3,11 +3,15 @@ package com.dento.care.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dento.care.domain.Patient;
 
+import com.dento.care.domain.User;
 import com.dento.care.repository.PatientRepository;
+import com.dento.care.repository.UserRepository;
+import com.dento.care.security.SecurityUtils;
 import com.dento.care.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +35,9 @@ public class PatientResource {
 
     private final PatientRepository patientRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public PatientResource(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
@@ -46,6 +53,9 @@ public class PatientResource {
     @Timed
     public ResponseEntity<Patient> createPatient(@Valid @RequestBody Patient patient) throws URISyntaxException {
         log.debug("REST request to save Patient : {}", patient);
+
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        patient.setDoctor(user.get());
         if (patient.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patient cannot already have an ID")).body(null);
         }
@@ -86,7 +96,7 @@ public class PatientResource {
     @Timed
     public List<Patient> getAllPatients() {
         log.debug("REST request to get all Patients");
-        return patientRepository.findAll();
+        return patientRepository.findByUserIsCurrentUser();
     }
 
     /**

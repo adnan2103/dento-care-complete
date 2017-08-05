@@ -3,11 +3,15 @@ package com.dento.care.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dento.care.domain.Treatment;
 
+import com.dento.care.domain.User;
 import com.dento.care.repository.TreatmentRepository;
+import com.dento.care.repository.UserRepository;
+import com.dento.care.security.SecurityUtils;
 import com.dento.care.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +34,9 @@ public class TreatmentResource {
 
     private final TreatmentRepository treatmentRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public TreatmentResource(TreatmentRepository treatmentRepository) {
         this.treatmentRepository = treatmentRepository;
     }
@@ -44,7 +51,11 @@ public class TreatmentResource {
     @PostMapping("/treatments")
     @Timed
     public ResponseEntity<Treatment> createTreatment(@RequestBody Treatment treatment) throws URISyntaxException {
+
         log.debug("REST request to save Treatment : {}", treatment);
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        treatment.setDoctor(user.get());
+
         if (treatment.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new treatment cannot already have an ID")).body(null);
         }
@@ -85,7 +96,7 @@ public class TreatmentResource {
     @Timed
     public List<Treatment> getAllTreatments() {
         log.debug("REST request to get all Treatments");
-        return treatmentRepository.findAll();
+        return treatmentRepository.findByUserIsCurrentUser();
     }
 
     /**

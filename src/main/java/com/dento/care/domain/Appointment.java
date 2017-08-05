@@ -34,6 +34,9 @@ public class Appointment implements Serializable {
     @ManyToOne
     private Patient patient;
 
+    @ManyToOne
+    private User doctor;
+
     public Long getId() {
         return id;
     }
@@ -92,6 +95,14 @@ public class Appointment implements Serializable {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 
     @Override
