@@ -79,10 +79,13 @@ public class TreatmentResource {
         log.debug("REST request to save Treatment : {}", treatment);
 
         setDoctor(treatment);
+
         treatment.setStartDate(Instant.now());
         treatment.setLastModifiedDate(Instant.now());
 
+        //@TODO To be updated with actual Patient.
         treatment.setPatient(patientRepository.getOne(1L));
+
         if (treatment.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new treatment cannot already have an ID")).body(null);
         }
@@ -108,9 +111,14 @@ public class TreatmentResource {
         if (treatment.getId() == null) {
             return createTreatment(treatment);
         }
+
         setDoctor(treatment);
+
         treatment.setLastModifiedDate(Instant.now());
+
+        //@TODO To be updated with actual Patient.
         treatment.setPatient(patientRepository.getOne(1L));
+
         Treatment result = treatmentRepository.save(treatment);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, treatment.getId().toString()))
