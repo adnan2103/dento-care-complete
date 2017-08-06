@@ -5,6 +5,6 @@
         .module('dentoCareApp')
         .constant('VERSION', "0.0.1-SNAPSHOT")
         .constant('DEBUG_INFO_ENABLED', false)
-        .constant('BUILD_TIMESTAMP', 1502039248586)
+        .constant('BUILD_TIMESTAMP', 1502040608711)
 ;
 })();

@@ -68,13 +68,15 @@ public class TreatmentResource {
     /**
      * POST  /treatments : Create a new treatment.
      *
-     * @param treatment the treatment to create
+     * @param treatment the treatment to create.
+     * @param patientId Patient Id whose treatment to be created.
      * @return the ResponseEntity with status 201 (Created) and with body the new treatment, or with status 400 (Bad Request) if the treatment has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/treatments")
+    @PostMapping("/patients/{patientId}/treatments")
     @Timed
-    public ResponseEntity<Treatment> createTreatment(@RequestBody Treatment treatment) throws URISyntaxException {
+    public ResponseEntity<Treatment> createTreatment(@RequestBody Treatment treatment,
+                                                     @PathVariable Long patientId ) throws URISyntaxException {
 
         log.debug("REST request to save Treatment : {}", treatment);
 
@@ -83,8 +85,7 @@ public class TreatmentResource {
         treatment.setStartDate(Instant.now());
         treatment.setLastModifiedDate(Instant.now());
 
-        //@TODO To be updated with actual Patient.
-        treatment.setPatient(patientRepository.getOne(1L));
+        treatment.setPatient(patientRepository.getOne(patientId));
 
         if (treatment.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new treatment cannot already have an ID")).body(null);
@@ -99,25 +100,26 @@ public class TreatmentResource {
      * PUT  /treatments : Updates an existing treatment.
      *
      * @param treatment the treatment to update
+     * @param patientId Patient Id whose treatment to be created.
      * @return the ResponseEntity with status 200 (OK) and with body the updated treatment,
      * or with status 400 (Bad Request) if the treatment is not valid,
      * or with status 500 (Internal Server Error) if the treatment couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/treatments")
+    @PutMapping("/patients/{patientId}/treatments")
     @Timed
-    public ResponseEntity<Treatment> updateTreatment(@RequestBody Treatment treatment) throws URISyntaxException {
+    public ResponseEntity<Treatment> updateTreatment(@RequestBody Treatment treatment,
+                                                     @PathVariable Long patientId ) throws URISyntaxException {
         log.debug("REST request to update Treatment : {}", treatment);
         if (treatment.getId() == null) {
-            return createTreatment(treatment);
+            return createTreatment(treatment, patientId);
         }
 
         setDoctor(treatment);
 
         treatment.setLastModifiedDate(Instant.now());
 
-        //@TODO To be updated with actual Patient.
-        treatment.setPatient(patientRepository.getOne(1L));
+        treatment.setPatient(patientRepository.getOne(patientId));
 
         Treatment result = treatmentRepository.save(treatment);
         return ResponseEntity.ok()
