@@ -38,11 +38,11 @@ public class Treatment implements Serializable {
 
     @CreatedDate
     @Column(name = "start_date")
-    private Instant startDate = Instant.now();
+    private Instant startDate;
 
     @LastModifiedDate
     @Column(name = "last_modified_date")
-    private Instant lastModifiedDate = Instant.now();
+    private Instant lastModifiedDate;
 
     @ManyToOne
     @JsonIgnore

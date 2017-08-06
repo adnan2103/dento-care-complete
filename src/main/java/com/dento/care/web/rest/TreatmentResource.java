@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -52,8 +53,16 @@ public class TreatmentResource {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PatientRepository patientRepository;
+
     public TreatmentResource(TreatmentRepository treatmentRepository) {
         this.treatmentRepository = treatmentRepository;
+    }
+
+    private void setDoctor(Treatment treatment) {
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        treatment.setDoctor(user.get());
     }
 
     /**
@@ -68,9 +77,12 @@ public class TreatmentResource {
     public ResponseEntity<Treatment> createTreatment(@RequestBody Treatment treatment) throws URISyntaxException {
 
         log.debug("REST request to save Treatment : {}", treatment);
-        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
-        treatment.setDoctor(user.get());
 
+        setDoctor(treatment);
+        treatment.setStartDate(Instant.now());
+        treatment.setLastModifiedDate(Instant.now());
+
+        treatment.setPatient(patientRepository.getOne(1L));
         if (treatment.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new treatment cannot already have an ID")).body(null);
         }
@@ -96,6 +108,9 @@ public class TreatmentResource {
         if (treatment.getId() == null) {
             return createTreatment(treatment);
         }
+        setDoctor(treatment);
+        treatment.setLastModifiedDate(Instant.now());
+        treatment.setPatient(patientRepository.getOne(1L));
         Treatment result = treatmentRepository.save(treatment);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, treatment.getId().toString()))
