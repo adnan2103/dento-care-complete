@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -17,4 +18,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
     @Query("select appointment from Appointment appointment where appointment.doctor.login = " +
         "?#{principal.username}")
     List<Appointment> findByUserIsCurrentUser();
+
+    Set<Appointment> findByPatientId(Long patientId);
 }

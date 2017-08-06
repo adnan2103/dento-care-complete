@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.Set;
+
 
 /**
  * Spring Data JPA repository for the ContactNumber entity.
@@ -12,5 +14,6 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ContactNumberRepository extends JpaRepository<ContactNumber,Long> {
-    
+
+    Set<ContactNumber> findByPatientId(Long patientId);
 }

@@ -1,5 +1,6 @@
 package com.dento.care.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,6 +30,7 @@ public class PostTreatmentImage implements Serializable {
     private String imageContentType;
 
     @ManyToOne
+    @JsonIgnore
     private Treatment treatment;
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package com.dento.care.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -54,6 +55,7 @@ public class Address implements Serializable {
     private Integer pincode;
 
     @ManyToOne
+    @JsonIgnore
     private Patient patient;
 
     public Long getId() {

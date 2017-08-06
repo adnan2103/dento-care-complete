@@ -20,6 +20,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Appointment.
@@ -98,6 +99,20 @@ public class AppointmentResource {
     public List<Appointment> getAllAppointments() {
         log.debug("REST request to get all Appointments");
         return appointmentRepository.findByUserIsCurrentUser();
+    }
+
+    /**
+     * GET  patients:id/appointments : get all appointment of a patient.
+     *
+     * @param patientId the id of the patient whose appointment to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the appointments, or with status 404 (Not Found)
+     */
+    @GetMapping("patients/{patientId}/appointments")
+    @Timed
+    public Set<Appointment> getPatientsAllAppointment(@PathVariable Long patientId) {
+        log.debug("REST request to get Patient : {} all appointments", patientId);
+        return appointmentRepository.findByPatientId(patientId);
+
     }
 
     /**

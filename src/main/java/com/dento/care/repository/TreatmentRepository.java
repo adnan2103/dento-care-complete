@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -19,4 +20,5 @@ public interface TreatmentRepository extends JpaRepository<Treatment,Long> {
         "?#{principal.username}")
     List<Treatment> findByUserIsCurrentUser();
 
+    Set<Treatment> findByPatientId(Long patientId);
 }

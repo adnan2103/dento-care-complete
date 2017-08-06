@@ -3,9 +3,9 @@ package com.dento.care.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dento.care.domain.Patient;
 
+import com.dento.care.domain.Treatment;
 import com.dento.care.domain.User;
-import com.dento.care.repository.PatientRepository;
-import com.dento.care.repository.UserRepository;
+import com.dento.care.repository.*;
 import com.dento.care.security.SecurityUtils;
 import com.dento.care.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -37,6 +37,21 @@ public class PatientResource {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EmailRepository emailRepository;
+
+    @Autowired
+    private ContactNumberRepository contactNumberRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private  TreatmentRepository treatmentRepository;
 
     public PatientResource(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
@@ -96,7 +111,12 @@ public class PatientResource {
     @Timed
     public List<Patient> getAllPatients() {
         log.debug("REST request to get all Patients");
-        return patientRepository.findByUserIsCurrentUser();
+        List<Patient> patients = patientRepository.findByUserIsCurrentUser();
+
+        for (Patient patient: patients) {
+            patient.setContactNumbers(contactNumberRepository.findByPatientId(patient.getId()));
+        }
+        return patients;
     }
 
     /**
@@ -110,8 +130,15 @@ public class PatientResource {
     public ResponseEntity<Patient> getPatient(@PathVariable Long id) {
         log.debug("REST request to get Patient : {}", id);
         Patient patient = patientRepository.findOne(id);
+
+        patient.setAddresses(addressRepository.findByPatientId(id));
+        patient.setContactNumbers(contactNumberRepository.findByPatientId(id));
+        patient.setEmails(emailRepository.findByPatientId(id));
+        patient.setAppointments(appointmentRepository.findByPatientId(id));
+
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(patient));
     }
+
 
     /**
      * DELETE  /patients/:id : delete the "id" patient.

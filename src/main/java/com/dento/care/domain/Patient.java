@@ -46,30 +46,27 @@ public class Patient implements Serializable {
     private String photoContentType;
 
     @ManyToOne
+    @JsonIgnore
     private User doctor;
 
     @OneToMany(mappedBy = "patient")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
     private Set<Treatment> treatments = new HashSet<>();
 
     @OneToMany(mappedBy = "patient")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Appointment> appointments = new HashSet<>();
 
     @OneToMany(mappedBy = "patient")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ContactNumber> contactNumbers = new HashSet<>();
 
     @OneToMany(mappedBy = "patient")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Email> emails = new HashSet<>();
 
     @OneToMany(mappedBy = "patient")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Address> addresses = new HashSet<>();
 

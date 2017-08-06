@@ -4,8 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.dento.care.domain.Treatment;
 
 import com.dento.care.domain.User;
-import com.dento.care.repository.TreatmentRepository;
-import com.dento.care.repository.UserRepository;
+import com.dento.care.repository.*;
 import com.dento.care.security.SecurityUtils;
 import com.dento.care.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -20,6 +19,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Treatment.
@@ -33,6 +33,21 @@ public class TreatmentResource {
     private static final String ENTITY_NAME = "treatment";
 
     private final TreatmentRepository treatmentRepository;
+
+    @Autowired
+    private NotesRepository notesRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Autowired
+    private OralExaminationRepository oralExaminationRepository;
+
+    @Autowired
+    private PreTreatmentImageRepository preTreatmentImageRepository;
+
+    @Autowired
+    private PostTreatmentImageRepository postTreatmentImageRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -111,6 +126,29 @@ public class TreatmentResource {
         log.debug("REST request to get Treatment : {}", id);
         Treatment treatment = treatmentRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(treatment));
+    }
+
+    /**
+     * GET  /patients/:id/treatments : get all treatments of the "id" patient.
+     *
+     * @param patientId the id of the patient whose treatments to be retrieved
+     * @return the ResponseEntity with status 200 (OK) and with body the treatments, or with status 404 (Not Found)
+     */
+    @GetMapping("/patients/{patientId}/treatments")
+    @Timed
+    public Set<Treatment> getPatientTreatments(@PathVariable Long patientId) {
+        log.debug("REST request to get Patient : {} Treatments.", patientId);
+
+        Set<Treatment> treatments = treatmentRepository.findByPatientId(patientId);
+        for (Treatment treatment: treatments) {
+            treatment.setOralExaminations(oralExaminationRepository.findByTreatmentId(treatment.getId()));
+            treatment.setPayments(paymentRepository.findByTreatmentId(treatment.getId()));
+            treatment.setNotes(notesRepository.findByTreatmentId(treatment.getId()));
+            treatment.setPreTreatmentImages(preTreatmentImageRepository.findByTreatmentId(treatment.getId()));
+            treatment.setPostTreatmentImages(postTreatmentImageRepository.findByTreatmentId(treatment.getId()));
+        }
+
+        return treatments;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.dento.care.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,6 +29,7 @@ public class OralExamination implements Serializable {
     private Long cost;
 
     @ManyToOne
+    @JsonIgnore
     private Treatment treatment;
 
     public Long getId() {

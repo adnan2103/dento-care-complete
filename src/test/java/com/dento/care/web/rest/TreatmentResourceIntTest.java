@@ -94,8 +94,8 @@ public class TreatmentResourceIntTest {
         Treatment treatment = new Treatment()
             .chiefComplainDescription(DEFAULT_CHIEF_COMPLAIN_DESCRIPTION)
             .status(DEFAULT_STATUS)
-            .startDate(DEFAULT_START_DATE)
-            .lastModifiedDate(DEFAULT_LAST_MODIFIED_DATE);
+            .startDate(Instant.now())
+            .lastModifiedDate(Instant.now());
         return treatment;
     }
 
@@ -198,8 +198,8 @@ public class TreatmentResourceIntTest {
         updatedTreatment
             .chiefComplainDescription(UPDATED_CHIEF_COMPLAIN_DESCRIPTION)
             .status(UPDATED_STATUS)
-            .startDate(UPDATED_START_DATE)
-            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE);
+            .startDate(Instant.now())
+            .lastModifiedDate(Instant.now());
 
         restTreatmentMockMvc.perform(put("/api/treatments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)

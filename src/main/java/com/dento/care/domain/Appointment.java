@@ -1,5 +1,6 @@
 package com.dento.care.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -32,9 +33,11 @@ public class Appointment implements Serializable {
     private String plannedTreatment;
 
     @ManyToOne
+    @JsonIgnore
     private Patient patient;
 
     @ManyToOne
+    @JsonIgnore
     private User doctor;
 
     public Long getId() {

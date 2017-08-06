@@ -6,12 +6,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
 import com.dento.care.domain.enumeration.Status;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 /**
  * A Treatment.
@@ -34,40 +36,39 @@ public class Treatment implements Serializable {
     @Column(name = "status")
     private Status status;
 
+    @CreatedDate
     @Column(name = "start_date")
-    private ZonedDateTime startDate;
+    private Instant startDate = Instant.now();
 
+    @LastModifiedDate
     @Column(name = "last_modified_date")
-    private ZonedDateTime lastModifiedDate;
+    private Instant lastModifiedDate = Instant.now();
 
     @ManyToOne
+    @JsonIgnore
     private Patient patient;
 
     @ManyToOne
+    @JsonIgnore
     private User doctor;
 
     @OneToMany(mappedBy = "treatment")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Notes> notes = new HashSet<>();
 
     @OneToMany(mappedBy = "treatment")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OralExamination> oralExaminations = new HashSet<>();
 
     @OneToMany(mappedBy = "treatment")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Payment> payments = new HashSet<>();
 
     @OneToMany(mappedBy = "treatment")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PreTreatmentImage> preTreatmentImages = new HashSet<>();
 
     @OneToMany(mappedBy = "treatment")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PostTreatmentImage> postTreatmentImages = new HashSet<>();
 
@@ -105,29 +106,29 @@ public class Treatment implements Serializable {
         this.status = status;
     }
 
-    public ZonedDateTime getStartDate() {
+    public Instant getStartDate() {
         return startDate;
     }
 
-    public Treatment startDate(ZonedDateTime startDate) {
+    public Treatment startDate(Instant startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public void setStartDate(ZonedDateTime startDate) {
+    public void setStartDate(Instant startDate) {
         this.startDate = startDate;
     }
 
-    public ZonedDateTime getLastModifiedDate() {
+    public Instant getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public Treatment lastModifiedDate(ZonedDateTime lastModifiedDate) {
+    public Treatment lastModifiedDate(Instant lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
         return this;
     }
 
-    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+    public void setLastModifiedDate(Instant lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
