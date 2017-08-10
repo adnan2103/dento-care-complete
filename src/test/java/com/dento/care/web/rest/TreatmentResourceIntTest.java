@@ -2,13 +2,16 @@ package com.dento.care.web.rest;
 
 import com.dento.care.DentoCareApp;
 
+import com.dento.care.domain.Patient;
 import com.dento.care.domain.Treatment;
+import com.dento.care.repository.PatientRepository;
 import com.dento.care.repository.TreatmentRepository;
 import com.dento.care.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +33,7 @@ import java.util.List;
 import static com.dento.care.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -74,6 +78,12 @@ public class TreatmentResourceIntTest {
 
     private Treatment treatment;
 
+    @Mock
+    private PatientRepository patientRepository;
+
+    @Mock
+    private Patient patient;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -109,6 +119,7 @@ public class TreatmentResourceIntTest {
     public void createTreatment() throws Exception {
         int databaseSizeBeforeCreate = treatmentRepository.findAll().size();
 
+        when(patientRepository.getOne(1L)).thenReturn(patient);
         // Create the Treatment
         restTreatmentMockMvc.perform(post("/api/treatments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)

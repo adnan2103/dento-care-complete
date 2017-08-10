@@ -66,16 +66,16 @@ public class TreatmentResource {
     }
 
     /**
-     * POST  /treatments : Create a new treatment.
+     * POST  /treatments : Create a new treatment for given patient.
      *
-     * @param treatment the treatment to create.
+     * @param treatment the treatment to create for given patient.
      * @param patientId Patient Id whose treatment to be created.
      * @return the ResponseEntity with status 201 (Created) and with body the new treatment, or with status 400 (Bad Request) if the treatment has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/patients/{patientId}/treatments")
     @Timed
-    public ResponseEntity<Treatment> createTreatment(@RequestBody Treatment treatment,
+    public ResponseEntity<Treatment> createTreatmentForPatient(@RequestBody Treatment treatment,
                                                      @PathVariable Long patientId ) throws URISyntaxException {
 
         log.debug("REST request to save Treatment : {}", treatment);
@@ -91,13 +91,13 @@ public class TreatmentResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new treatment cannot already have an ID")).body(null);
         }
         Treatment result = treatmentRepository.save(treatment);
-        return ResponseEntity.created(new URI("/api/treatments/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/patients/{patientId}/treatments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /treatments : Updates an existing treatment.
+     * PUT  /treatments : Updates an existing treatment for given patient.
      *
      * @param treatment the treatment to update
      * @param patientId Patient Id whose treatment to be created.
@@ -108,11 +108,11 @@ public class TreatmentResource {
      */
     @PutMapping("/patients/{patientId}/treatments")
     @Timed
-    public ResponseEntity<Treatment> updateTreatment(@RequestBody Treatment treatment,
+    public ResponseEntity<Treatment> updateTreatmentForPatient(@RequestBody Treatment treatment,
                                                      @PathVariable Long patientId ) throws URISyntaxException {
         log.debug("REST request to update Treatment : {}", treatment);
         if (treatment.getId() == null) {
-            return createTreatment(treatment, patientId);
+            return createTreatmentForPatient(treatment, patientId);
         }
 
         setDoctor(treatment);
@@ -128,29 +128,15 @@ public class TreatmentResource {
     }
 
     /**
-     * GET  /treatments : get all the treatments.
+     * GET  /treatments : get all the treatments of logged in doctor.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of treatments in body
      */
     @GetMapping("/treatments")
     @Timed
-    public List<Treatment> getAllTreatments() {
+    public List<Treatment> getAllTreatmentsOfLoggedInDoctor() {
         log.debug("REST request to get all Treatments");
         return treatmentRepository.findByUserIsCurrentUser();
-    }
-
-    /**
-     * GET  /treatments/:id : get the "id" treatment.
-     *
-     * @param id the id of the treatment to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the treatment, or with status 404 (Not Found)
-     */
-    @GetMapping("/treatments/{id}")
-    @Timed
-    public ResponseEntity<Treatment> getTreatment(@PathVariable Long id) {
-        log.debug("REST request to get Treatment : {}", id);
-        Treatment treatment = treatmentRepository.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(treatment));
     }
 
     /**
@@ -174,6 +160,20 @@ public class TreatmentResource {
         }
 
         return treatments;
+    }
+
+    /**
+     * GET  /treatments/:id : get the "id" treatment.
+     *
+     * @param id the id of the treatment to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the treatment, or with status 404 (Not Found)
+     */
+    @GetMapping("/treatments/{id}")
+    @Timed
+    public ResponseEntity<Treatment> getTreatment(@PathVariable Long id) {
+        log.debug("REST request to get Treatment : {}", id);
+        Treatment treatment = treatmentRepository.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(treatment));
     }
 
     /**

@@ -119,7 +119,7 @@ public class AddressResourceIntTest {
         int databaseSizeBeforeCreate = addressRepository.findAll().size();
 
         // Create the Address
-        restAddressMockMvc.perform(post("/api/addresses")
+        restAddressMockMvc.perform(post("/api/patients/1/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(address)))
             .andExpect(status().isCreated());

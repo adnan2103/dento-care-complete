@@ -4,10 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.dento.care.domain.OralExamination;
 
 import com.dento.care.repository.OralExaminationRepository;
+import com.dento.care.repository.TreatmentRepository;
 import com.dento.care.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing OralExamination.
@@ -30,24 +33,31 @@ public class OralExaminationResource {
 
     private final OralExaminationRepository oralExaminationRepository;
 
+    @Autowired
+    private TreatmentRepository treatmentRepository;
+
     public OralExaminationResource(OralExaminationRepository oralExaminationRepository) {
         this.oralExaminationRepository = oralExaminationRepository;
     }
 
     /**
-     * POST  /oral-examinations : Create a new oralExamination.
+     * POST  /oral-examinations : Create a new oralExamination for a given treatment.
      *
      * @param oralExamination the oralExamination to create
+     * @param treatmentId Treatment Id whose oral examiniation is need to be created.
      * @return the ResponseEntity with status 201 (Created) and with body the new oralExamination, or with status 400 (Bad Request) if the oralExamination has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/oral-examinations")
+    @PostMapping("/treatments/{treatmentId}/oral-examinations")
     @Timed
-    public ResponseEntity<OralExamination> createOralExamination(@RequestBody OralExamination oralExamination) throws URISyntaxException {
+    public ResponseEntity<OralExamination> createOralExaminationForTreatment(@RequestBody OralExamination oralExamination,
+                                                                             @PathVariable Long treatmentId ) throws URISyntaxException {
         log.debug("REST request to save OralExamination : {}", oralExamination);
         if (oralExamination.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new oralExamination cannot already have an ID")).body(null);
         }
+        oralExamination.setTreatment(treatmentRepository.getOne(treatmentId));
+
         OralExamination result = oralExaminationRepository.save(oralExamination);
         return ResponseEntity.created(new URI("/api/oral-examinations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -55,21 +65,25 @@ public class OralExaminationResource {
     }
 
     /**
-     * PUT  /oral-examinations : Updates an existing oralExamination.
+     * PUT  /oral-examinations : Updates an existing oralExamination for a given treatment.
      *
      * @param oralExamination the oralExamination to update
+     * @param treatmentId Treatment Id whose oral examiniation is need to be updated.
      * @return the ResponseEntity with status 200 (OK) and with body the updated oralExamination,
      * or with status 400 (Bad Request) if the oralExamination is not valid,
      * or with status 500 (Internal Server Error) if the oralExamination couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/oral-examinations")
+    @PutMapping("/treatments/{treatmentId}/oral-examinations")
     @Timed
-    public ResponseEntity<OralExamination> updateOralExamination(@RequestBody OralExamination oralExamination) throws URISyntaxException {
+    public ResponseEntity<OralExamination> updateOralExaminationForTreatment(@RequestBody OralExamination oralExamination,
+                                                                 @PathVariable Long treatmentId ) throws URISyntaxException {
         log.debug("REST request to update OralExamination : {}", oralExamination);
         if (oralExamination.getId() == null) {
-            return createOralExamination(oralExamination);
+            return createOralExaminationForTreatment(oralExamination, treatmentId);
         }
+        oralExamination.setTreatment(treatmentRepository.getOne(treatmentId));
+
         OralExamination result = oralExaminationRepository.save(oralExamination);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, oralExamination.getId().toString()))
@@ -77,15 +91,15 @@ public class OralExaminationResource {
     }
 
     /**
-     * GET  /oral-examinations : get all the oralExaminations.
-     *
+     * GET  /oral-examinations : get all the oralExaminations for given treatment.
+     * @param treatmentId Treatment Id whose oral examinations need to be fetched.
      * @return the ResponseEntity with status 200 (OK) and the list of oralExaminations in body
      */
-    @GetMapping("/oral-examinations")
+    @GetMapping("/treatments/{treatmentId}/oral-examinations")
     @Timed
-    public List<OralExamination> getAllOralExaminations() {
+    public Set<OralExamination> getAllOralExaminationsForTreatment(@PathVariable Long treatmentId) {
         log.debug("REST request to get all OralExaminations");
-        return oralExaminationRepository.findAll();
+        return oralExaminationRepository.findByTreatmentId(treatmentId);
     }
 
     /**

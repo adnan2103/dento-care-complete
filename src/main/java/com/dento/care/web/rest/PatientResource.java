@@ -50,13 +50,15 @@ public class PatientResource {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    @Autowired
-    private  TreatmentRepository treatmentRepository;
-
     public PatientResource(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
+
+    private void setDoctor(Patient patient) {
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        patient.setDoctor(user.get());
+    }
     /**
      * POST  /patients : Create a new patient.
      *
@@ -66,11 +68,11 @@ public class PatientResource {
      */
     @PostMapping("/patients")
     @Timed
-    public ResponseEntity<Patient> createPatient(@Valid @RequestBody Patient patient) throws URISyntaxException {
+    public ResponseEntity<Patient> createPatientForDoctor(@Valid @RequestBody Patient patient) throws URISyntaxException {
         log.debug("REST request to save Patient : {}", patient);
 
-        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
-        patient.setDoctor(user.get());
+        setDoctor(patient);
+
         if (patient.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patient cannot already have an ID")).body(null);
         }
@@ -91,11 +93,14 @@ public class PatientResource {
      */
     @PutMapping("/patients")
     @Timed
-    public ResponseEntity<Patient> updatePatient(@Valid @RequestBody Patient patient) throws URISyntaxException {
+    public ResponseEntity<Patient> updatePatientForDoctor(@Valid @RequestBody Patient patient) throws URISyntaxException {
         log.debug("REST request to update Patient : {}", patient);
         if (patient.getId() == null) {
-            return createPatient(patient);
+            return createPatientForDoctor(patient);
         }
+
+        setDoctor(patient);
+
         Patient result = patientRepository.save(patient);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, patient.getId().toString()))
@@ -109,7 +114,7 @@ public class PatientResource {
      */
     @GetMapping("/patients")
     @Timed
-    public List<Patient> getAllPatients() {
+    public List<Patient> getAllPatientsOfLoggedInDoctor() {
         log.debug("REST request to get all Patients");
         List<Patient> patients = patientRepository.findByUserIsCurrentUser();
 

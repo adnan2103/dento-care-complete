@@ -5,6 +5,7 @@ import com.dento.care.domain.Appointment;
 
 import com.dento.care.domain.User;
 import com.dento.care.repository.AppointmentRepository;
+import com.dento.care.repository.PatientRepository;
 import com.dento.care.repository.UserRepository;
 import com.dento.care.security.SecurityUtils;
 import com.dento.care.web.rest.util.HeaderUtil;
@@ -38,25 +39,31 @@ public class AppointmentResource {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PatientRepository patientRepository;
 
     public AppointmentResource(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
     }
 
     /**
-     * POST  /appointments : Create a new appointment.
+     * POST  /appointments : Create a new appointment for the given patient.
      *
      * @param appointment the appointment to create
+     * @param patientId Patient Id whose appointment to be created.
      * @return the ResponseEntity with status 201 (Created) and with body the new appointment, or with status 400 (Bad Request) if the appointment has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/appointments")
+    @PostMapping("/patients/{patientId}/appointments")
     @Timed
-    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) throws URISyntaxException {
+    public ResponseEntity<Appointment> createAppointmentForPatient(@RequestBody Appointment appointment,
+                                                         @PathVariable Long patientId ) throws URISyntaxException {
         log.debug("REST request to save Appointment : {}", appointment);
 
         Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
         appointment.setDoctor(user.get());
+
+        appointment.setPatient(patientRepository.getOne(patientId));
 
         if (appointment.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new appointment cannot already have an ID")).body(null);
@@ -68,21 +75,25 @@ public class AppointmentResource {
     }
 
     /**
-     * PUT  /appointments : Updates an existing appointment.
+     * PUT  /appointments : Updates an existing appointment for given patient.
      *
      * @param appointment the appointment to update
+     * @param patientId Patient Id whose appointment to be created.
      * @return the ResponseEntity with status 200 (OK) and with body the updated appointment,
      * or with status 400 (Bad Request) if the appointment is not valid,
      * or with status 500 (Internal Server Error) if the appointment couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/appointments")
+    @PutMapping("/patients/{patientId}/appointments")
     @Timed
-    public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment) throws URISyntaxException {
+    public ResponseEntity<Appointment> updateAppointmentForPatinet(@RequestBody Appointment appointment,
+                                                         @PathVariable Long patientId) throws URISyntaxException {
         log.debug("REST request to update Appointment : {}", appointment);
         if (appointment.getId() == null) {
-            return createAppointment(appointment);
+            return createAppointmentForPatient(appointment, patientId);
         }
+        appointment.setPatient(patientRepository.getOne(patientId));
+
         Appointment result = appointmentRepository.save(appointment);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, appointment.getId().toString()))
@@ -90,13 +101,13 @@ public class AppointmentResource {
     }
 
     /**
-     * GET  /appointments : get all the appointments.
+     * GET  /appointments : get all the appointments of logged in doctor.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of appointments in body
      */
     @GetMapping("/appointments")
     @Timed
-    public List<Appointment> getAllAppointments() {
+    public List<Appointment> getAllAppointmentsOfLoggedInDoctor() {
         log.debug("REST request to get all Appointments");
         return appointmentRepository.findByUserIsCurrentUser();
     }
@@ -107,7 +118,7 @@ public class AppointmentResource {
      * @param patientId the id of the patient whose appointment to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the appointments, or with status 404 (Not Found)
      */
-    @GetMapping("patients/{patientId}/appointments")
+    @GetMapping("/patients/{patientId}/appointments")
     @Timed
     public Set<Appointment> getPatientsAllAppointment(@PathVariable Long patientId) {
         log.debug("REST request to get Patient : {} all appointments", patientId);
