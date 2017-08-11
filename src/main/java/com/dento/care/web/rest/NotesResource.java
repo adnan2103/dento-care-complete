@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -61,7 +60,7 @@ public class NotesResource {
         notes.setTreatment(treatmentRepository.getOne(treatmentId));
 
         Notes result = notesRepository.save(notes);
-        return ResponseEntity.created(new URI("/api/notes/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/treatments/"+treatmentId+"/notes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -111,7 +110,7 @@ public class NotesResource {
      * @param id the id of the notes to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the notes, or with status 404 (Not Found)
      */
-    @GetMapping("/treatments/{treatmentId}/notes/{id}")
+    @GetMapping("/notes/{id}")
     @Timed
     public ResponseEntity<Notes> getNotes(@PathVariable Long id) {
         log.debug("REST request to get Notes : {}", id);
@@ -125,7 +124,7 @@ public class NotesResource {
      * @param id the id of the notes to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/treatments/{treatmentId}/notes/{id}")
+    @DeleteMapping("/notes/{id}")
     @Timed
     public ResponseEntity<Void> deleteNotes(@PathVariable Long id) {
         log.debug("REST request to delete Notes : {}", id);

@@ -15,12 +15,12 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.patients = Patient.query();
-        vm.notes = Notes.query();
-        vm.oralexaminations = OralExamination.query();
-        vm.payments = Payment.query();
-        vm.pretreatmentimages = PreTreatmentImage.query();
-        vm.posttreatmentimages = PostTreatmentImage.query();
+        vm.patients = Patient.fetchAll();
+        vm.notes = Notes.fetchAll();
+        vm.oralexaminations = OralExamination.fetchAll();
+        vm.payments = Payment.fetchAll();
+        vm.pretreatmentimages = PreTreatmentImage.fetchAll();
+        vm.posttreatmentimages = PostTreatmentImage.fetchAll();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

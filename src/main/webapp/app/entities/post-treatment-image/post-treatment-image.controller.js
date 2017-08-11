@@ -18,7 +18,7 @@
         loadAll();
 
         function loadAll() {
-            PostTreatmentImage.query(function(result) {
+            PostTreatmentImage.fetchAll(function(result) {
                 vm.postTreatmentImages = result;
                 vm.searchQuery = null;
             });

@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            Payment.query(function(result) {
+            Payment.fetchAll(function(result) {
                 vm.payments = result;
                 vm.searchQuery = null;
             });

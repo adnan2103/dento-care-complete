@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            OralExamination.query(function(result) {
+            OralExamination.fetchAll(function(result) {
                 vm.oralExaminations = result;
                 vm.searchQuery = null;
             });

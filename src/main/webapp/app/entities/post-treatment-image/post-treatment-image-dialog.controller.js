@@ -15,7 +15,7 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.treatments = Treatment.query();
+        vm.treatments = Treatment.fetchAll();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

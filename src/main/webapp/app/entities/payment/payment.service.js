@@ -7,21 +7,35 @@
     Payment.$inject = ['$resource', 'DateUtils'];
 
     function Payment ($resource, DateUtils) {
-        var resourceUrl =  'api/treatments/1/payments/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+        return $resource('', {}, {
+            'fetchAll': {
+                method: 'GET',
+                isArray: true,
+                url: 'api/treatments/1/payments'
+            },
+            'save':{
+                method: 'POST',
+                url: 'api/treatments/1/payments/:id'
+            },
             'get': {
                 method: 'GET',
+                url: 'api/payments/:id',
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.paymentDate = DateUtils.convertDateTimeFromServer(data.paymentDate);
                     }
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method:'PUT',
+                url: 'api/treatments/1/payments/:id'
+            },
+            'delete': {
+                method: 'DELETE',
+                url: 'api/payments/:id'
+            }
         });
     }
 })();

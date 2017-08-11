@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -61,7 +60,7 @@ public class PaymentResource {
         payment.setTreatment(treatmentRepository.getOne(treatmentId));
 
         Payment result = paymentRepository.save(payment);
-        return ResponseEntity.created(new URI("/api/payments/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/treatments/"+treatmentId+"/payments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -111,7 +110,7 @@ public class PaymentResource {
      * @param id the id of the payment to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the payment, or with status 404 (Not Found)
      */
-    @GetMapping("/treatments/{treatmentId}/payments/{id}")
+    @GetMapping("/payments/{id}")
     @Timed
     public ResponseEntity<Payment> getPayment(@PathVariable Long id) {
         log.debug("REST request to get Payment : {}", id);
@@ -125,7 +124,7 @@ public class PaymentResource {
      * @param id the id of the payment to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/treatments/{treatmentId}/payments/{id}")
+    @DeleteMapping("/payments/{id}")
     @Timed
     public ResponseEntity<Void> deletePayment(@PathVariable Long id) {
         log.debug("REST request to delete Payment : {}", id);

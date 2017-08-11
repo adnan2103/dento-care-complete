@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            Notes.query(function(result) {
+            Notes.fetchAll(function(result) {
                 vm.notes = result;
                 vm.searchQuery = null;
             });

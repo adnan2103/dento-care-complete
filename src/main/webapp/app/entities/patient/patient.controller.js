@@ -18,7 +18,7 @@
         loadAll();
 
         function loadAll() {
-            Patient.query(function(result) {
+            Patient.fetchAll(function(result) {
                 vm.patients = result;
                 vm.searchQuery = null;
             });

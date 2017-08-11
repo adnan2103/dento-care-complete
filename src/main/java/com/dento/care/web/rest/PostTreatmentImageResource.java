@@ -59,7 +59,7 @@ public class PostTreatmentImageResource {
         postTreatmentImage.setTreatment(treatmentRepository.getOne(treatmentId));
 
         PostTreatmentImage result = postTreatmentImageRepository.save(postTreatmentImage);
-        return ResponseEntity.created(new URI("/api/post-treatment-images/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/treatments/"+treatmentId+"/post-treatment-images/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -108,7 +108,7 @@ public class PostTreatmentImageResource {
      * @param id the id of the postTreatmentImage to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the postTreatmentImage, or with status 404 (Not Found)
      */
-    @GetMapping("/treatments/{treatmentId}/post-treatment-images/{id}")
+    @GetMapping("/post-treatment-images/{id}")
     @Timed
     public ResponseEntity<PostTreatmentImage> getPostTreatmentImage(@PathVariable Long id) {
         log.debug("REST request to get PostTreatmentImage : {}", id);
@@ -122,7 +122,7 @@ public class PostTreatmentImageResource {
      * @param id the id of the postTreatmentImage to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/treatments/{treatmentId}/post-treatment-images/{id}")
+    @DeleteMapping("/post-treatment-images/{id}")
     @Timed
     public ResponseEntity<Void> deletePostTreatmentImage(@PathVariable Long id) {
         log.debug("REST request to delete PostTreatmentImage : {}", id);

@@ -59,7 +59,7 @@ public class OralExaminationResource {
         oralExamination.setTreatment(treatmentRepository.getOne(treatmentId));
 
         OralExamination result = oralExaminationRepository.save(oralExamination);
-        return ResponseEntity.created(new URI("/api/oral-examinations/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/treatments/"+treatmentId+"/oral-examinations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -108,7 +108,7 @@ public class OralExaminationResource {
      * @param id the id of the oralExamination to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the oralExamination, or with status 404 (Not Found)
      */
-    @GetMapping("/treatments/{treatmentId}/oral-examinations/{id}")
+    @GetMapping("/oral-examinations/{id}")
     @Timed
     public ResponseEntity<OralExamination> getOralExamination(@PathVariable Long id) {
         log.debug("REST request to get OralExamination : {}", id);
@@ -122,7 +122,7 @@ public class OralExaminationResource {
      * @param id the id of the oralExamination to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/treatments/{treatmentId}/oral-examinations/{id}")
+    @DeleteMapping("/oral-examinations/{id}")
     @Timed
     public ResponseEntity<Void> deleteOralExamination(@PathVariable Long id) {
         log.debug("REST request to delete OralExamination : {}", id);
