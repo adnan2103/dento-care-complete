@@ -61,7 +61,7 @@ public class AddressResource {
         address.setPatient(patientRepository.getOne(patientId));
 
         Address result = addressRepository.save(address);
-        return ResponseEntity.created(new URI("/api/addresses/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/patients/"+patientId+"/addresses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }

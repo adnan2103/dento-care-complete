@@ -58,7 +58,7 @@ public class EmailResource {
         }
         email.setPatient(patientRepository.getOne(patientId));
         Email result = emailRepository.save(email);
-        return ResponseEntity.created(new URI("/api/emails/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/patients/"+patientId+"/emails/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }

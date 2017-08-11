@@ -69,7 +69,7 @@ public class AppointmentResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new appointment cannot already have an ID")).body(null);
         }
         Appointment result = appointmentRepository.save(appointment);
-        return ResponseEntity.created(new URI("/api/appointments/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/patients/"+patientId+"/appointments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }

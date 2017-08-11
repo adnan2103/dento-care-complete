@@ -91,7 +91,7 @@ public class TreatmentResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new treatment cannot already have an ID")).body(null);
         }
         Treatment result = treatmentRepository.save(treatment);
-        return ResponseEntity.created(new URI("/api/patients/{patientId}/treatments/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/patients/"+patientId+"/treatments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }

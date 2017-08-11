@@ -61,7 +61,7 @@ public class ContactNumberResource {
         contactNumber.setPatient(patientRepository.getOne(patientId));
 
         ContactNumber result = contactNumberRepository.save(contactNumber);
-        return ResponseEntity.created(new URI("/api/contact-numbers/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/patients/"+patientId+"/contact-numbers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
