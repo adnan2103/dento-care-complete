@@ -108,7 +108,7 @@ public class OralExaminationResource {
      * @param id the id of the oralExamination to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the oralExamination, or with status 404 (Not Found)
      */
-    @GetMapping("/oral-examinations/{id}")
+    @GetMapping("/treatments/{treatmentId}/oral-examinations/{id}")
     @Timed
     public ResponseEntity<OralExamination> getOralExamination(@PathVariable Long id) {
         log.debug("REST request to get OralExamination : {}", id);
@@ -122,7 +122,7 @@ public class OralExaminationResource {
      * @param id the id of the oralExamination to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/oral-examinations/{id}")
+    @DeleteMapping("/treatments/{treatmentId}/oral-examinations/{id}")
     @Timed
     public ResponseEntity<Void> deleteOralExamination(@PathVariable Long id) {
         log.debug("REST request to delete OralExamination : {}", id);

@@ -7,12 +7,21 @@
     Address.$inject = ['$resource'];
 
     function Address ($resource) {
-        var resourceUrl =  'api/addresses/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+
+        return $resource('', {}, {
+            'fetchAll': {
+                method: 'GET',
+                isArray: true,
+                url: 'api/patients/1/addresses'
+            },
+            'save':{
+                method: 'POST',
+                url: 'api/patients/1/addresses/:id'
+            },
             'get': {
                 method: 'GET',
+                url: 'api/addresses/:id',
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
@@ -20,7 +29,14 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method:'PUT',
+                url: 'api/patients/1/addresses/:id'
+            },
+            'delete': {
+                method: 'DELETE',
+                url: 'api/addresses/:id'
+            }
         });
     }
 })();

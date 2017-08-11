@@ -7,22 +7,35 @@
     Appointment.$inject = ['$resource', 'DateUtils'];
 
     function Appointment ($resource, DateUtils) {
-        var resourceUrl =  'api/appointments/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+        return $resource('', {}, {
+            'fetchAll': {
+                method: 'GET',
+                isArray: true,
+                url: 'api/patients/1/appointments'
+            },
+            'save':{
+                method: 'POST',
+                url: 'api/patients/1/appointments/:id'
+            },
             'get': {
                 method: 'GET',
+                url: 'api/appointments/:id',
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.appointmentStart = DateUtils.convertDateTimeFromServer(data.appointmentStart);
-                        data.appointmentEnd = DateUtils.convertDateTimeFromServer(data.appointmentEnd);
                     }
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method:'PUT',
+                url: 'api/patients/1/appointments/:id'
+            },
+            'delete': {
+                method: 'DELETE',
+                url: 'api/appointments/:id'
+            }
         });
     }
 })();

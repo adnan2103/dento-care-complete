@@ -7,7 +7,7 @@
     Notes.$inject = ['$resource'];
 
     function Notes ($resource) {
-        var resourceUrl =  'api/notes/:id';
+        var resourceUrl =  'api/treatments/1/notes/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

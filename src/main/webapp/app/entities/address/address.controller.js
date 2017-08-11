@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            Address.query(function(result) {
+            Address.fetchAll(function(result) {
                 vm.addresses = result;
                 vm.searchQuery = null;
             });

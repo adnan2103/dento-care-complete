@@ -108,7 +108,7 @@ public class PreTreatmentImageResource {
      * @param id the id of the preTreatmentImage to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the preTreatmentImage, or with status 404 (Not Found)
      */
-    @GetMapping("/pre-treatment-images/{id}")
+    @GetMapping("/treatments/{treatmentId}/pre-treatment-images/{id}")
     @Timed
     public ResponseEntity<PreTreatmentImage> getPreTreatmentImage(@PathVariable Long id) {
         log.debug("REST request to get PreTreatmentImage : {}", id);
@@ -122,7 +122,7 @@ public class PreTreatmentImageResource {
      * @param id the id of the preTreatmentImage to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/pre-treatment-images/{id}")
+    @DeleteMapping("/treatments/{treatmentId}/pre-treatment-images/{id}")
     @Timed
     public ResponseEntity<Void> deletePreTreatmentImage(@PathVariable Long id) {
         log.debug("REST request to delete PreTreatmentImage : {}", id);

@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            Treatment.query(function(result) {
+            Treatment.fetchAll(function(result) {
                 vm.treatments = result;
                 vm.searchQuery = null;
             });

@@ -7,7 +7,7 @@
     PostTreatmentImage.$inject = ['$resource'];
 
     function PostTreatmentImage ($resource) {
-        var resourceUrl =  'api/post-treatment-images/:id';
+        var resourceUrl =  'api/treatments/1/post-treatment-images/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

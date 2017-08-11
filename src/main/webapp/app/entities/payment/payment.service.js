@@ -7,7 +7,7 @@
     Payment.$inject = ['$resource', 'DateUtils'];
 
     function Payment ($resource, DateUtils) {
-        var resourceUrl =  'api/payments/:id';
+        var resourceUrl =  'api/treatments/1/payments/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

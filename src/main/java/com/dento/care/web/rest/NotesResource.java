@@ -111,7 +111,7 @@ public class NotesResource {
      * @param id the id of the notes to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the notes, or with status 404 (Not Found)
      */
-    @GetMapping("/notes/{id}")
+    @GetMapping("/treatments/{treatmentId}/notes/{id}")
     @Timed
     public ResponseEntity<Notes> getNotes(@PathVariable Long id) {
         log.debug("REST request to get Notes : {}", id);
@@ -125,7 +125,7 @@ public class NotesResource {
      * @param id the id of the notes to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/notes/{id}")
+    @DeleteMapping("/treatments/{treatmentId}/notes/{id}")
     @Timed
     public ResponseEntity<Void> deleteNotes(@PathVariable Long id) {
         log.debug("REST request to delete Notes : {}", id);

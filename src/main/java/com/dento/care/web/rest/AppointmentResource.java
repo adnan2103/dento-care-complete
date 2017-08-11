@@ -94,6 +94,10 @@ public class AppointmentResource {
         }
         appointment.setPatient(patientRepository.getOne(patientId));
 
+        //@TODO extract it as function.
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        appointment.setDoctor(user.get());
+
         Appointment result = appointmentRepository.save(appointment);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, appointment.getId().toString()))

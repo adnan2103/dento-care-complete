@@ -15,11 +15,12 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.treatments = Treatment.query();
-        vm.appointments = Appointment.query();
-        vm.contactnumbers = ContactNumber.query();
-        vm.emails = Email.query();
-        vm.addresses = Address.query();
+
+        vm.treatments = Treatment.fetchAll();
+        vm.appointments = Appointment.fetchAll();
+        vm.contactnumbers = ContactNumber.fetchAll();
+        vm.emails = Email.fetchAll();
+        vm.addresses = Address.fetchAll();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

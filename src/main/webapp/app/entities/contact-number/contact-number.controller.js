@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            ContactNumber.query(function(result) {
+            ContactNumber.fetchAll(function(result) {
                 vm.contactNumbers = result;
                 vm.searchQuery = null;
             });

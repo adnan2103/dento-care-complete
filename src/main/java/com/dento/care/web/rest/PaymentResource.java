@@ -111,7 +111,7 @@ public class PaymentResource {
      * @param id the id of the payment to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the payment, or with status 404 (Not Found)
      */
-    @GetMapping("/payments/{id}")
+    @GetMapping("/treatments/{treatmentId}/payments/{id}")
     @Timed
     public ResponseEntity<Payment> getPayment(@PathVariable Long id) {
         log.debug("REST request to get Payment : {}", id);
@@ -125,7 +125,7 @@ public class PaymentResource {
      * @param id the id of the payment to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/payments/{id}")
+    @DeleteMapping("/treatments/{treatmentId}/payments/{id}")
     @Timed
     public ResponseEntity<Void> deletePayment(@PathVariable Long id) {
         log.debug("REST request to delete Payment : {}", id);

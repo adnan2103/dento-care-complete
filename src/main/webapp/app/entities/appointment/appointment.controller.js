@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            Appointment.query(function(result) {
+            Appointment.fetchAll(function(result) {
                 vm.appointments = result;
                 vm.searchQuery = null;
             });

@@ -16,7 +16,7 @@
         loadAll();
 
         function loadAll() {
-            Email.query(function(result) {
+            Email.fetchAll(function(result) {
                 vm.emails = result;
                 vm.searchQuery = null;
             });

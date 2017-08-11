@@ -108,7 +108,7 @@ public class PostTreatmentImageResource {
      * @param id the id of the postTreatmentImage to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the postTreatmentImage, or with status 404 (Not Found)
      */
-    @GetMapping("/post-treatment-images/{id}")
+    @GetMapping("/treatments/{treatmentId}/post-treatment-images/{id}")
     @Timed
     public ResponseEntity<PostTreatmentImage> getPostTreatmentImage(@PathVariable Long id) {
         log.debug("REST request to get PostTreatmentImage : {}", id);
@@ -122,7 +122,7 @@ public class PostTreatmentImageResource {
      * @param id the id of the postTreatmentImage to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/post-treatment-images/{id}")
+    @DeleteMapping("/treatments/{treatmentId}/post-treatment-images/{id}")
     @Timed
     public ResponseEntity<Void> deletePostTreatmentImage(@PathVariable Long id) {
         log.debug("REST request to delete PostTreatmentImage : {}", id);

@@ -7,7 +7,7 @@
     PreTreatmentImage.$inject = ['$resource'];
 
     function PreTreatmentImage ($resource) {
-        var resourceUrl =  'api/pre-treatment-images/:id';
+        var resourceUrl =  'api/treatments/1/pre-treatment-images/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
