@@ -21,9 +21,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:8889/dentocaa_db?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: dentocaa_user
-        password: :Bk3Ikoca_
+        url: jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/ad_429ac2d0d8b0e2e?user=b9db0c2715d36d&password=1ad4d115
+        username: b9db0c2715d36d
+        password: :1ad4d115
         hikari:
             data-source-properties:
                 cachePrepStmts: true
