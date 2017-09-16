@@ -15,9 +15,9 @@
             "detail": {
                 "title": "Appointment"
             },
-            "appointmentStart": "Appointment Start",
-            "appointmentEnd": "Appointment End",
-            "plannedTreatment": "Planned Treatment",
+            "start": "Appointment Start",
+            "end": "Appointment End",
+            "tittle": "Planned Treatment",
             "patient": "Patient"
         }
     }

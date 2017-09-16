@@ -24,13 +24,13 @@ public class Appointment implements Serializable {
     private Long id;
 
     @Column(name = "appointment_start")
-    private ZonedDateTime appointmentStart;
+    private ZonedDateTime start;
 
     @Column(name = "appointment_end")
-    private ZonedDateTime appointmentEnd;
+    private ZonedDateTime end;
 
     @Column(name = "planned_treatment")
-    private String plannedTreatment;
+    private String tittle;
 
     @ManyToOne
     @JsonIgnore
@@ -48,43 +48,43 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
-    public ZonedDateTime getAppointmentStart() {
-        return appointmentStart;
+    public ZonedDateTime getStart() {
+        return start;
     }
 
-    public Appointment appointmentStart(ZonedDateTime appointmentStart) {
-        this.appointmentStart = appointmentStart;
+    public Appointment start(ZonedDateTime start) {
+        this.start = start;
         return this;
     }
 
-    public void setAppointmentStart(ZonedDateTime appointmentStart) {
-        this.appointmentStart = appointmentStart;
+    public void setStart(ZonedDateTime start) {
+        this.start = start;
     }
 
-    public ZonedDateTime getAppointmentEnd() {
-        return appointmentEnd;
+    public ZonedDateTime getEnd() {
+        return end;
     }
 
-    public Appointment appointmentEnd(ZonedDateTime appointmentEnd) {
-        this.appointmentEnd = appointmentEnd;
+    public Appointment end(ZonedDateTime end) {
+        this.end = end;
         return this;
     }
 
-    public void setAppointmentEnd(ZonedDateTime appointmentEnd) {
-        this.appointmentEnd = appointmentEnd;
+    public void setEnd(ZonedDateTime end) {
+        this.end = end;
     }
 
-    public String getPlannedTreatment() {
-        return plannedTreatment;
+    public String getTittle() {
+        return tittle;
     }
 
-    public Appointment plannedTreatment(String plannedTreatment) {
-        this.plannedTreatment = plannedTreatment;
+    public Appointment tittle(String tittle) {
+        this.tittle = tittle;
         return this;
     }
 
-    public void setPlannedTreatment(String plannedTreatment) {
-        this.plannedTreatment = plannedTreatment;
+    public void setTittle(String tittle) {
+        this.tittle = tittle;
     }
 
     public Patient getPatient() {
@@ -132,9 +132,9 @@ public class Appointment implements Serializable {
     public String toString() {
         return "Appointment{" +
             "id=" + getId() +
-            ", appointmentStart='" + getAppointmentStart() + "'" +
-            ", appointmentEnd='" + getAppointmentEnd() + "'" +
-            ", plannedTreatment='" + getPlannedTreatment() + "'" +
+            ", start='" + getStart() + "'" +
+            ", end='" + getEnd() + "'" +
+            ", tittle='" + getTittle() + "'" +
             "}";
     }
 }

@@ -88,9 +88,9 @@ public class AppointmentResourceIntTest {
      */
     public static Appointment createEntity(EntityManager em) {
         Appointment appointment = new Appointment()
-            .appointmentStart(DEFAULT_APPOINTMENT_START)
-            .appointmentEnd(DEFAULT_APPOINTMENT_END)
-            .plannedTreatment(DEFAULT_PLANNED_TREATMENT);
+            .start(DEFAULT_APPOINTMENT_START)
+            .end(DEFAULT_APPOINTMENT_END)
+            .tittle(DEFAULT_PLANNED_TREATMENT);
         return appointment;
     }
 
@@ -114,9 +114,9 @@ public class AppointmentResourceIntTest {
         List<Appointment> appointmentList = appointmentRepository.findAll();
         assertThat(appointmentList).hasSize(databaseSizeBeforeCreate + 1);
         Appointment testAppointment = appointmentList.get(appointmentList.size() - 1);
-        assertThat(testAppointment.getAppointmentStart()).isEqualTo(DEFAULT_APPOINTMENT_START);
-        assertThat(testAppointment.getAppointmentEnd()).isEqualTo(DEFAULT_APPOINTMENT_END);
-        assertThat(testAppointment.getPlannedTreatment()).isEqualTo(DEFAULT_PLANNED_TREATMENT);
+        assertThat(testAppointment.getStart()).isEqualTo(DEFAULT_APPOINTMENT_START);
+        assertThat(testAppointment.getEnd()).isEqualTo(DEFAULT_APPOINTMENT_END);
+        assertThat(testAppointment.getTittle()).isEqualTo(DEFAULT_PLANNED_TREATMENT);
     }
 
     @Test
@@ -149,9 +149,9 @@ public class AppointmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
-            .andExpect(jsonPath("$.[*].appointmentStart").value(hasItem(sameInstant(DEFAULT_APPOINTMENT_START))))
-            .andExpect(jsonPath("$.[*].appointmentEnd").value(hasItem(sameInstant(DEFAULT_APPOINTMENT_END))))
-            .andExpect(jsonPath("$.[*].plannedTreatment").value(hasItem(DEFAULT_PLANNED_TREATMENT.toString())));
+            .andExpect(jsonPath("$.[*].start").value(hasItem(sameInstant(DEFAULT_APPOINTMENT_START))))
+            .andExpect(jsonPath("$.[*].end").value(hasItem(sameInstant(DEFAULT_APPOINTMENT_END))))
+            .andExpect(jsonPath("$.[*].tittle").value(hasItem(DEFAULT_PLANNED_TREATMENT.toString())));
     }
 
     @Test
@@ -165,9 +165,9 @@ public class AppointmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(appointment.getId().intValue()))
-            .andExpect(jsonPath("$.appointmentStart").value(sameInstant(DEFAULT_APPOINTMENT_START)))
-            .andExpect(jsonPath("$.appointmentEnd").value(sameInstant(DEFAULT_APPOINTMENT_END)))
-            .andExpect(jsonPath("$.plannedTreatment").value(DEFAULT_PLANNED_TREATMENT.toString()));
+            .andExpect(jsonPath("$.start").value(sameInstant(DEFAULT_APPOINTMENT_START)))
+            .andExpect(jsonPath("$.end").value(sameInstant(DEFAULT_APPOINTMENT_END)))
+            .andExpect(jsonPath("$.tittle").value(DEFAULT_PLANNED_TREATMENT.toString()));
     }
 
     @Test
@@ -188,9 +188,9 @@ public class AppointmentResourceIntTest {
         // Update the appointment
         Appointment updatedAppointment = appointmentRepository.findOne(appointment.getId());
         updatedAppointment
-            .appointmentStart(UPDATED_APPOINTMENT_START)
-            .appointmentEnd(UPDATED_APPOINTMENT_END)
-            .plannedTreatment(UPDATED_PLANNED_TREATMENT);
+            .start(UPDATED_APPOINTMENT_START)
+            .end(UPDATED_APPOINTMENT_END)
+            .tittle(UPDATED_PLANNED_TREATMENT);
 
         restAppointmentMockMvc.perform(put("/api/appointments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -201,9 +201,9 @@ public class AppointmentResourceIntTest {
         List<Appointment> appointmentList = appointmentRepository.findAll();
         assertThat(appointmentList).hasSize(databaseSizeBeforeUpdate);
         Appointment testAppointment = appointmentList.get(appointmentList.size() - 1);
-        assertThat(testAppointment.getAppointmentStart()).isEqualTo(UPDATED_APPOINTMENT_START);
-        assertThat(testAppointment.getAppointmentEnd()).isEqualTo(UPDATED_APPOINTMENT_END);
-        assertThat(testAppointment.getPlannedTreatment()).isEqualTo(UPDATED_PLANNED_TREATMENT);
+        assertThat(testAppointment.getStart()).isEqualTo(UPDATED_APPOINTMENT_START);
+        assertThat(testAppointment.getEnd()).isEqualTo(UPDATED_APPOINTMENT_END);
+        assertThat(testAppointment.getTittle()).isEqualTo(UPDATED_PLANNED_TREATMENT);
     }
 
     @Test

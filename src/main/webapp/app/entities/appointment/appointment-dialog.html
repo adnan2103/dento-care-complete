@@ -14,35 +14,35 @@
                     ng-model="vm.appointment.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="dentoCareApp.appointment.appointmentStart" for="field_appointmentStart">Appointment Start</label>
+            <label class="control-label" data-translate="dentoCareApp.appointment.start" for="field_start">Appointment Start</label>
                 <div class="input-group">
-                    <input id="field_appointmentStart" type="text" class="form-control" name="appointmentStart" datetime-picker="{{dateformat}}" ng-model="vm.appointment.appointmentStart" is-open="vm.datePickerOpenStatus.appointmentStart"
+                    <input id="field_start" type="text" class="form-control" name="start" datetime-picker="{{dateformat}}" ng-model="vm.appointment.start" is-open="vm.datePickerOpenStatus.start"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('appointmentStart')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('start')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="dentoCareApp.appointment.appointmentEnd" for="field_appointmentEnd">Appointment End</label>
+            <label class="control-label" data-translate="dentoCareApp.appointment.end" for="field_end">Appointment End</label>
                 <div class="input-group">
-                    <input id="field_appointmentEnd" type="text" class="form-control" name="appointmentEnd" datetime-picker="{{dateformat}}" ng-model="vm.appointment.appointmentEnd" is-open="vm.datePickerOpenStatus.appointmentEnd"
+                    <input id="field_end" type="text" class="form-control" name="end" datetime-picker="{{dateformat}}" ng-model="vm.appointment.end" is-open="vm.datePickerOpenStatus.end"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('appointmentEnd')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('end')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="dentoCareApp.appointment.plannedTreatment" for="field_plannedTreatment">Planned Treatment</label>
-            <input type="text" class="form-control" name="plannedTreatment" id="field_plannedTreatment"
-                    ng-model="vm.appointment.plannedTreatment"
+            <label class="control-label" data-translate="dentoCareApp.appointment.tittle" for="field_tittle">Planned Treatment</label>
+            <input type="text" class="form-control" name="tittle" id="field_tittle"
+                    ng-model="vm.appointment.tittle"
                     />
         </div>
 
         <div class="form-group">
             <label data-translate="dentoCareApp.appointment.patient" for="field_patient">Patient</label>
-            <select class="form-control" id="field_patient" name="patient" ng-model="vm.appointment.patient" ng-options="patient as patient.id for patient in vm.patients track by patient.id">
+            <select class="form-control" id="field_patient" name="patient" ng-model="vm.appointment.patient" ng-options="patient as patient.name for patient in vm.patients track by patient.id">
                 <option value=""></option>
             </select>
         </div>

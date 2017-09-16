@@ -104,9 +104,9 @@
                     resolve: {
                         entity: function () {
                             return {
-                                appointmentStart: null,
-                                appointmentEnd: null,
-                                plannedTreatment: null,
+                                start: null,
+                                end: null,
+                                tittle: null,
                                 id: null
                             };
                         }
