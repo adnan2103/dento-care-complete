@@ -10,7 +10,7 @@
                 "contactNumber": "Contact Number",
                 "address": "Address",
                 "patient": "Patient",
-                "treatment": "Treatment",
+                "treatment": "Reports",
                 "notes": "Notes",
                 "appointment": "Appointment",
                 "oralExamination": "Oral Examination",
@@ -22,7 +22,7 @@
             "account": {
                 "main": "Account",
                 "settings": "Settings",
-                "password": "Password",
+                "password": "Change Password",
                 "sessions": "Sessions",
                 "login": "Sign in",
                 "logout": "Sign out",

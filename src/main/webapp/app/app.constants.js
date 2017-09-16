@@ -4,7 +4,7 @@
     angular
         .module('dentoCareApp')
         .constant('VERSION', "0.0.1-SNAPSHOT")
-        .constant('DEBUG_INFO_ENABLED', false)
-        .constant('BUILD_TIMESTAMP', 1505537720030)
+        .constant('DEBUG_INFO_ENABLED', true)
+        .constant('BUILD_TIMESTAMP', "")
 ;
 })();
