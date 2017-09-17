@@ -24,7 +24,7 @@
                 end: '21:00',
                 dow: [1, 2, 3, 4, 5, 6]
             },
-            editable: true,
+            editable: false,
             selectOverlap: false,
 
             eventOverlap: false,

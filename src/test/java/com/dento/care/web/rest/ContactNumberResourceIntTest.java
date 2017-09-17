@@ -37,8 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DentoCareApp.class)
 public class ContactNumberResourceIntTest {
 
-    private static final Integer DEFAULT_CONTACT_NUMEBR = 9999;
-    private static final Integer UPDATED_CONTACT_NUMEBR = 9998;
+    private static final Integer DEFAULT_CONTACT_NUMBER = 9999;
+    private static final Integer UPDATED_CONTACT_NUMBER = 9998;
 
     @Autowired
     private ContactNumberRepository contactNumberRepository;
@@ -77,7 +77,7 @@ public class ContactNumberResourceIntTest {
      */
     public static ContactNumber createEntity(EntityManager em) {
         ContactNumber contactNumber = new ContactNumber()
-            .contactNumebr(DEFAULT_CONTACT_NUMEBR);
+            .contactNumber(DEFAULT_CONTACT_NUMBeR);
         return contactNumber;
     }
 
@@ -101,7 +101,7 @@ public class ContactNumberResourceIntTest {
         List<ContactNumber> contactNumberList = contactNumberRepository.findAll();
         assertThat(contactNumberList).hasSize(databaseSizeBeforeCreate + 1);
         ContactNumber testContactNumber = contactNumberList.get(contactNumberList.size() - 1);
-        assertThat(testContactNumber.getContactNumebr()).isEqualTo(DEFAULT_CONTACT_NUMEBR);
+        assertThat(testContactNumber.getContactNumber()).isEqualTo(DEFAULT_CONTACT_NUMBeR);
     }
 
     @Test
@@ -125,10 +125,10 @@ public class ContactNumberResourceIntTest {
 
     @Test
     @Transactional
-    public void checkContactNumebrIsRequired() throws Exception {
+    public void checkContactNumberIsRequired() throws Exception {
         int databaseSizeBeforeTest = contactNumberRepository.findAll().size();
         // set the field null
-        contactNumber.setContactNumebr(null);
+        contactNumber.setContactNumber(null);
 
         // Create the ContactNumber, which fails.
 
@@ -152,7 +152,7 @@ public class ContactNumberResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contactNumber.getId().intValue())))
-            .andExpect(jsonPath("$.[*].contactNumebr").value(hasItem(DEFAULT_CONTACT_NUMEBR)));
+            .andExpect(jsonPath("$.[*].contactNumber").value(hasItem(DEFAULT_CONTACT_NUMBER)));
     }
 
     @Test
@@ -166,7 +166,7 @@ public class ContactNumberResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(contactNumber.getId().intValue()))
-            .andExpect(jsonPath("$.contactNumebr").value(DEFAULT_CONTACT_NUMEBR));
+            .andExpect(jsonPath("$.contactNumber").value(DEFAULT_CONTACT_NUMBER));
     }
 
     @Test
@@ -187,7 +187,7 @@ public class ContactNumberResourceIntTest {
         // Update the contactNumber
         ContactNumber updatedContactNumber = contactNumberRepository.findOne(contactNumber.getId());
         updatedContactNumber
-            .contactNumebr(UPDATED_CONTACT_NUMEBR);
+            .contactNumber(UPDATED_CONTACT_NUMBER);
 
         restContactNumberMockMvc.perform(put("/api/contact-numbers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -198,7 +198,7 @@ public class ContactNumberResourceIntTest {
         List<ContactNumber> contactNumberList = contactNumberRepository.findAll();
         assertThat(contactNumberList).hasSize(databaseSizeBeforeUpdate);
         ContactNumber testContactNumber = contactNumberList.get(contactNumberList.size() - 1);
-        assertThat(testContactNumber.getContactNumebr()).isEqualTo(UPDATED_CONTACT_NUMEBR);
+        assertThat(testContactNumber.getContactNumber()).isEqualTo(UPDATED_CONTACT_Number);
     }
 
     @Test

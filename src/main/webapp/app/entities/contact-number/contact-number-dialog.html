@@ -14,21 +14,21 @@
                     ng-model="vm.contactNumber.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="dentoCareApp.contactNumber.contactNumebr" for="field_contactNumebr">Contact Numebr</label>
-            <input type="number" class="form-control" name="contactNumebr" id="field_contactNumebr"
-                    ng-model="vm.contactNumber.contactNumebr"
+            <label class="control-label" data-translate="dentoCareApp.contactNumber.contactNumber" for="field_contactNumber">Contact Number</label>
+            <input type="number" class="form-control" name="contactNumber" id="field_contactNumber"
+                    ng-model="vm.contactNumber.contactNumber"
                     required max="9999"/>
-            <div ng-show="editForm.contactNumebr.$invalid">
+            <div ng-show="editForm.contactNumber.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.contactNumebr.$error.required" data-translate="entity.validation.required">
+                    ng-show="editForm.contactNumber.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.contactNumebr.$error.max" data-translate="entity.validation.max" translate-value-max="9999">
+                    ng-show="editForm.contactNumber.$error.max" data-translate="entity.validation.max" translate-value-max="9999">
                     This field cannot be more than 9999.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.contactNumebr.$error.number" data-translate="entity.validation.number">
+                    ng-show="editForm.contactNumber.$error.number" data-translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>

@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="dentoCareApp.contactNumber.contactNumebr">Contact Numebr</span></th>
+                    <th><span data-translate="dentoCareApp.contactNumber.contactNumber">Contact Number</span></th>
                     <th><span data-translate="dentoCareApp.contactNumber.patient">Patient</span></th>
                     <th></th>
                 </tr>
@@ -27,7 +27,7 @@
             <tbody>
                 <tr ng-repeat="contactNumber in vm.contactNumbers track by contactNumber.id">
                     <td><a ui-sref="contact-number-detail({id:contactNumber.id})">{{contactNumber.id}}</a></td>
-                    <td>{{contactNumber.contactNumebr}}</td>
+                    <td>{{contactNumber.contactNumber}}</td>
                     <td>
                         <a ui-sref="patient-detail({id:contactNumber.patient.id})">{{contactNumber.patient.id}}</a>
                     </td>

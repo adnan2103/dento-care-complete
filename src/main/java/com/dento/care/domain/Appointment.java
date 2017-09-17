@@ -33,7 +33,7 @@ public class Appointment implements Serializable {
     private String tittle;
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     private Patient patient;
 
     @ManyToOne

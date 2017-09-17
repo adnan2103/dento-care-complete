@@ -23,7 +23,8 @@
             "appointment": "Appointment",
             "contactNumber": "Contact Number",
             "email": "Email",
-            "address": "Address"
+            "address": "Address",
+            "contact": "Contact"
         }
     }
 }

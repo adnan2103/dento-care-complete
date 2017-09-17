@@ -7,7 +7,7 @@
     ContactNumber.$inject = ['$resource'];
 
     function ContactNumber ($resource) {
-        
+
         return $resource('', {}, {
             'fetchAll': {
                 method: 'GET',

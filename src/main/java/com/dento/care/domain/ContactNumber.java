@@ -25,8 +25,8 @@ public class ContactNumber implements Serializable {
 
     @NotNull
     @Max(value = 9999)
-    @Column(name = "contact_numebr", nullable = false)
-    private Integer contactNumebr;
+    @Column(name = "contact_number", nullable = false)
+    private Integer contactNumber;
 
     @ManyToOne
     @JsonIgnore
@@ -40,17 +40,17 @@ public class ContactNumber implements Serializable {
         this.id = id;
     }
 
-    public Integer getContactNumebr() {
-        return contactNumebr;
+    public Integer getcontactNumber() {
+        return contactNumber;
     }
 
-    public ContactNumber contactNumebr(Integer contactNumebr) {
-        this.contactNumebr = contactNumebr;
+    public ContactNumber contactNumber(Integer contactNumber) {
+        this.contactNumber = contactNumber;
         return this;
     }
 
-    public void setContactNumebr(Integer contactNumebr) {
-        this.contactNumebr = contactNumebr;
+    public void setcontactNumber(Integer contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public Patient getPatient() {
@@ -90,7 +90,7 @@ public class ContactNumber implements Serializable {
     public String toString() {
         return "ContactNumber{" +
             "id=" + getId() +
-            ", contactNumebr='" + getContactNumebr() + "'" +
+            ", contactNumber='" + getcontactNumber() + "'" +
             "}";
     }
 }
