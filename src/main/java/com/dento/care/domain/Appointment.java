@@ -30,7 +30,7 @@ public class Appointment implements Serializable {
     private ZonedDateTime end;
 
     @Column(name = "planned_treatment")
-    private String tittle;
+    private String title;
 
     @ManyToOne
     //@JsonIgnore
@@ -74,17 +74,17 @@ public class Appointment implements Serializable {
         this.end = end;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public Appointment tittle(String tittle) {
-        this.tittle = tittle;
+    public Appointment title(String title) {
+        this.title = title;
         return this;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Patient getPatient() {
@@ -134,7 +134,7 @@ public class Appointment implements Serializable {
             "id=" + getId() +
             ", start='" + getStart() + "'" +
             ", end='" + getEnd() + "'" +
-            ", tittle='" + getTittle() + "'" +
+            ", title='" + getTitle() + "'" +
             "}";
     }
 }

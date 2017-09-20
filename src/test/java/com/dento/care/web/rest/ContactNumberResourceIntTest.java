@@ -77,7 +77,7 @@ public class ContactNumberResourceIntTest {
      */
     public static ContactNumber createEntity(EntityManager em) {
         ContactNumber contactNumber = new ContactNumber()
-            .contactNumber(DEFAULT_CONTACT_NUMBeR);
+            .contactNumber(DEFAULT_CONTACT_NUMBER);
         return contactNumber;
     }
 
@@ -101,7 +101,7 @@ public class ContactNumberResourceIntTest {
         List<ContactNumber> contactNumberList = contactNumberRepository.findAll();
         assertThat(contactNumberList).hasSize(databaseSizeBeforeCreate + 1);
         ContactNumber testContactNumber = contactNumberList.get(contactNumberList.size() - 1);
-        assertThat(testContactNumber.getContactNumber()).isEqualTo(DEFAULT_CONTACT_NUMBeR);
+        assertThat(testContactNumber.getContactNumber()).isEqualTo(DEFAULT_CONTACT_NUMBER);
     }
 
     @Test
@@ -198,7 +198,7 @@ public class ContactNumberResourceIntTest {
         List<ContactNumber> contactNumberList = contactNumberRepository.findAll();
         assertThat(contactNumberList).hasSize(databaseSizeBeforeUpdate);
         ContactNumber testContactNumber = contactNumberList.get(contactNumberList.size() - 1);
-        assertThat(testContactNumber.getContactNumber()).isEqualTo(UPDATED_CONTACT_Number);
+        assertThat(testContactNumber.getContactNumber()).isEqualTo(UPDATED_CONTACT_NUMBER);
     }
 
     @Test

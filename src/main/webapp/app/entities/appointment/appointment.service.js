@@ -4,19 +4,25 @@
         .module('dentoCareApp')
         .factory('Appointment', Appointment);
 
-    Appointment.$inject = ['$resource', 'DateUtils'];
+    Appointment.$inject = ['$resource'];
 
-    function Appointment ($resource, DateUtils) {
+    function Appointment ($resource) {
 
         return $resource('', {}, {
             'fetchAll': {
                 method: 'GET',
                 isArray: true,
-                url: 'api/patients/1/appointments'
+                url: 'api/appointments'
+            },
+            'fetchPatientAllAppointments': {
+                method: 'GET',
+                url: 'api/patients/:patientId/appointments',
+                params: {patientId: '@patientId'}
             },
             'save':{
                 method: 'POST',
-                url: 'api/patients/1/appointments/:id'
+                url: 'api/patients/:patientId/appointments',
+                params: {patientId: '@patientId'}
             },
             'get': {
                 method: 'GET',
@@ -30,7 +36,8 @@
             },
             'update': {
                 method:'PUT',
-                url: 'api/patients/1/appointments/:id'
+                url: 'api/patients/:patientId/appointments',
+                params: {patientId: '@patientId'}
             },
             'delete': {
                 method: 'DELETE',

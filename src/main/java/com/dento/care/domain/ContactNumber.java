@@ -40,7 +40,7 @@ public class ContactNumber implements Serializable {
         this.id = id;
     }
 
-    public Integer getcontactNumber() {
+    public Integer getContactNumber() {
         return contactNumber;
     }
 
@@ -49,7 +49,7 @@ public class ContactNumber implements Serializable {
         return this;
     }
 
-    public void setcontactNumber(Integer contactNumber) {
+    public void setContactNumber(Integer contactNumber) {
         this.contactNumber = contactNumber;
     }
 
@@ -90,7 +90,7 @@ public class ContactNumber implements Serializable {
     public String toString() {
         return "ContactNumber{" +
             "id=" + getId() +
-            ", contactNumber='" + getcontactNumber() + "'" +
+            ", contactNumber='" + getContactNumber() + "'" +
             "}";
     }
 }

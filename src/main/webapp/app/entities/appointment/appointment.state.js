@@ -106,7 +106,7 @@
                             return {
                                 start: null,
                                 end: null,
-                                tittle: null,
+                                title: null,
                                 id: null
                             };
                         }

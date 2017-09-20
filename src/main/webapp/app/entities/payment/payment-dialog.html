@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label" data-translate="dentoCareApp.payment.paymentDate" for="field_paymentDate">Payment Date</label>
                 <div class="input-group">
-                    <input id="field_paymentDate" type="text" class="form-control" name="paymentDate" datetime-picker="{{dateformat}}" ng-model="vm.payment.paymentDate" is-open="vm.datePickerOpenStatus.paymentDate"
+                    <input id="field_paymentDate" type="text" class="form-control" name="paymentDate" datetime-picker="dd/MM/yyyy hh:mm" ng-model="vm.payment.paymentDate" is-open="vm.datePickerOpenStatus.paymentDate"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('paymentDate')"><i class="glyphicon glyphicon-calendar"></i></button>

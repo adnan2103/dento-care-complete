@@ -17,7 +17,7 @@
             },
             "start": "Appointment Start",
             "end": "Appointment End",
-            "tittle": "Planned Treatment",
+            "title": "Planned Treatment",
             "patient": "Patient"
         }
     }

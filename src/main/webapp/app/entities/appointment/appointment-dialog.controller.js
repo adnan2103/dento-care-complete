@@ -28,9 +28,9 @@
         function save () {
             vm.isSaving = true;
             if (vm.appointment.id !== null) {
-                Appointment.update(vm.appointment, onSaveSuccess, onSaveError);
+                Appointment.update({patientId:vm.appointment.patient.id},vm.appointment, onSaveSuccess, onSaveError);
             } else {
-                Appointment.save(vm.appointment, onSaveSuccess, onSaveError);
+                Appointment.save({patientId:vm.appointment.patient.id},vm.appointment, onSaveSuccess, onSaveError);
             }
         }
 
