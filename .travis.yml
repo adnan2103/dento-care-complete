@@ -8,4 +8,4 @@ before_install:
   - gulp build
 install: true
 script: mvn clean package -DskipTests=true
-after_success: curl -T ./target/ROOT.war -u $FTP_USER:$FTP_PASSWORD ftp://ftp.dento-care.com/appservers/apache-tomcat-7.0.62/webapps/ROOT.war
+after_success: curl -T ./target/ROOT.war -u $FTP_USER:$FTP_PASSWORD $FTP
