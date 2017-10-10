@@ -110,3 +110,9 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Protractor]: https://angular.github.io/protractor/
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Environment name="spring.config.location" value="file:/path/to/your/application/properties/file/" type="java.lang.String"/>
+</Context>
