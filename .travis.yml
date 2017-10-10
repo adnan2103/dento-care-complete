@@ -1,6 +1,11 @@
 language: java
-install:
-    - npm install
-    - bower install
-script: gulp build
-after_success: curl -T ./target/ROOT.war -u $FTP_USER:$FTP_PASSWORD ftp://ftp.dento-care.com/appservers/apache-tomcat-7.0.62/webapps/ROOT.war
+before_install:
+  - npm install -g grunt-cli
+  - npm install -g gulp
+  - npm install -g bower
+  - npm install
+  - bower install
+  - gulp build
+install: true
+script: mvn clean package -DskipTests=true
+after_success: curl -T ./target/ROOT.war -u $FTP_USER:$FTP_PASSWORD $FTP
