@@ -1,6 +1,7 @@
 package com.dento.care;
 
 import com.dento.care.config.DefaultProfileUtil;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
@@ -8,6 +9,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * This is a helper Java class that provides an alternative to creating a web.xml.
  * This will be invoked only when the application is deployed to a servlet container like Tomcat, JBoss etc.
  */
+@SpringBootApplication
 public class ApplicationWebXml extends SpringBootServletInitializer {
 
     @Override
