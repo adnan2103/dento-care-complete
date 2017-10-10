@@ -7,7 +7,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>dento-care.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -22,9 +22,9 @@
     </appender>
 
 
-    <logger name="com.dento.care" level="#logback.loglevel#"/>
+    <logger name="com.dento.care" level="INFO"/>
 
-    <logger name="io.github.jhipster" level="#logback.loglevel#"/>
+    <logger name="io.github.jhipster" level="INFO"/>
 
     <logger name="javax.activation" level="WARN"/>
     <logger name="javax.mail" level="WARN"/>
@@ -59,11 +59,8 @@
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <root level="#logback.loglevel#">
-        <appender-ref ref="CONSOLE"/>
-
+    <root level="INFO">
         <appender-ref ref="FILE"/>
-
     </root>
 
 </configuration>
