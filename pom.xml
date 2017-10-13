@@ -13,7 +13,7 @@
     <artifactId>dento-care</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Dento Care</name>
+    <name>Dento Care Test</name>
 
     <properties>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
